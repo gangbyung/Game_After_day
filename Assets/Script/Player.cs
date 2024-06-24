@@ -95,7 +95,10 @@ public class Player : MonoBehaviour
             {
                 rigid.velocity = new Vector2(rigid.velocity.x, 0);
                 rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+
                 anim.SetBool("isJumping", true);
+                anim.SetBool("iswalking", false);
+                
 
                 DeJumpStamina(jumpStamina); //점프시 스태미나 감소
             }
@@ -110,7 +113,26 @@ public class Player : MonoBehaviour
         }
         //앉는 중일때 스태미나 회복
 
-        
+
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("isJumping") == true)
+        {
+            // 원하는 애니메이션이라면 플레이 중인지 체크
+            float animTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            if (animTime == 0)
+            {
+                // 플레이 중이 아님
+            }
+            if (animTime > 0 && animTime < 1.0f)
+            {
+                anim.SetBool("iswalking", false);
+            }
+            else if (animTime >= 1.0f)
+            {
+                // 애니메이션 종료
+            }
+        }
+
 
         //애니메이션
         if (Mathf.Abs(rigid.velocity.x) < 0.2)
@@ -119,6 +141,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            
             anim.SetBool("iswalking", true);
             anim.SetBool("isCrouch", false);
         }
@@ -235,6 +258,7 @@ public class Player : MonoBehaviour
         HpSlider.value = currentHp;
     }
 
+    
     //private IEnumerator StaminaLatecortine(float amount)
     //{
     //    yield return new WaitForSeconds(1f);
