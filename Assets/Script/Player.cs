@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor.UI;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Mathematics;
 
 public class Player : MonoBehaviour
 {
@@ -20,18 +21,7 @@ public class Player : MonoBehaviour
     public float walkSpeed;
     public float currentSpeed;
     public float jumpPower;
-    //최대 스태미나, 현재 스태미나
-    public float maxStamina = 100f;
-    public float currentStamina;
-    //달렸을때 스태미나 소모량, 점프하였을때 스태미나 소모량
-    public float runStamina = 10f; //초당 5
-    public float jumpStamina = 10f; //횟수당 10
-    //가만히 있을때 회복되는 스태미나 량
-    public float recoveryStamina = 2f; //초당 2
-    public float downRecoveryStamina = 10;
-    //HP 기능 추가
-    public float currentHp;
-    public float maxHp = 100f;
+    
 
     //기능들 넣어주기 리지드바디(물리), 스프라이트렌더러(플레이어 회전),애니메이터(플레이어 움직일때 모습)
     Rigidbody2D rigid;
@@ -41,8 +31,7 @@ public class Player : MonoBehaviour
     GameObject scanObject;
 
     Vector3 dirVec;
-    public Slider staminaSlider;
-    public Slider HpSlider;
+    
 
     void Awake()
     {
@@ -65,9 +54,11 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        currentStamina = maxStamina;
-        currentHp = maxHp;
-        UpdateUI();
+        Hud.Instance.currentStamina = Hud.Instance.maxStamina;
+        Hud.Instance.currentHp = Hud.Instance.maxHp;
+        
+        
+        Hud.Instance.UpdateUI();
     }
     void Update()
     {
@@ -75,21 +66,10 @@ public class Player : MonoBehaviour
         if (!Input.GetButtonUp("Horizontal") && (!Input.GetKey(KeyCode.Space))) //스태미나 회복
         {
             
-            Increcovery(recoveryStamina * Time.deltaTime);
+            Increcovery(Hud.Instance.recoveryStamina * Time.deltaTime);
         }
-        //stop speed
-        //if (Input.GetButtonUp("Horizontal"))
-        //{
-        //    rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
-
-        ////}
-        //if (Input.GetButton("Horizontal"))
-        //{
-        //     = Input.GetAxisRaw("Horizontal") == -1;
-
-        //}
         //jump
-        if (currentStamina > jumpStamina)
+        if (Hud.Instance.currentStamina > Hud.Instance.jumpStamina)
         {
             if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))
             {
@@ -100,7 +80,7 @@ public class Player : MonoBehaviour
                 anim.SetBool("iswalking", false);
                 
 
-                DeJumpStamina(jumpStamina); //점프시 스태미나 감소
+                DeJumpStamina(Hud.Instance.jumpStamina); //점프시 스태미나 감소
             }
         }
         //앉기
@@ -108,30 +88,14 @@ public class Player : MonoBehaviour
         {
             currentSpeed = 0f;
             anim.SetBool("isCrouch",true);
-            IncDownrecovery(downRecoveryStamina * Time.deltaTime);
+            IncDownrecovery(Hud.Instance.downRecoveryStamina * Time.deltaTime);
 
         }
         //앉는 중일때 스태미나 회복
 
 
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("isJumping") == true)
-        {
-            // 원하는 애니메이션이라면 플레이 중인지 체크
-            float animTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            if (animTime == 0)
-            {
-                // 플레이 중이 아님
-            }
-            if (animTime > 0 && animTime < 1.0f)
-            {
-                anim.SetBool("iswalking", false);
-            }
-            else if (animTime >= 1.0f)
-            {
-                // 애니메이션 종료
-            }
-        }
+        
 
 
         //애니메이션
@@ -187,9 +151,6 @@ public class Player : MonoBehaviour
 
             }
         }
-        
-
-
         Debug.DrawRay(rigid.position, dirVec * 1f, new Color(0,1,0));
         RaycastHit2D rayHitObject = Physics2D.Raycast(rigid.position, dirVec, 1f, LayerMask.GetMask("Object"));
 
@@ -203,23 +164,23 @@ public class Player : MonoBehaviour
         
     void Movement() //가로 움직임
     {
-        float h = manager.isAction ? 0 : Input.GetAxis("Horizontal");
-        if (h != 0f)
+        float InputX = manager.isAction ? 0 : Input.GetAxis("Horizontal");
+        if (InputX != 0f)
         {
-            spriteRenderer.flipX = h < 0 ? true : false;
+            spriteRenderer.flipX = InputX < 0;//? true : false;
         }
 
-        rigid.velocity = new Vector2(currentSpeed * h, rigid.velocity.y);
+        rigid.velocity = new Vector2(currentSpeed * InputX, rigid.velocity.y);
 
         currentSpeed = walkSpeed;
 
-        if (currentStamina > 5f)
+        if (Hud.Instance.currentStamina > 5f)
         {
             if (Input.GetKey(KeyCode.LeftShift)) //달리기
             {
                 currentSpeed = runSpeed;
 
-                DeRunStamina(runStamina * Time.deltaTime); //스태미나 감소
+                DeRunStamina(Hud.Instance.runStamina * Time.deltaTime); //스태미나 감소
 
 
             }
@@ -232,33 +193,27 @@ public class Player : MonoBehaviour
     //스태미너 증감
     void DeRunStamina(float amount) //달렸을때 스태미나 감소
     {
-        currentStamina = Mathf.Clamp(currentStamina - amount, 0f, maxStamina);
-        UpdateUI();
+        Hud.Instance.currentStamina = Mathf.Clamp(Hud.Instance.currentStamina - amount, 0f, Hud.Instance.maxStamina);
+        Hud.Instance.UpdateUI();
     }
     void DeJumpStamina(float amount) //점프했을때 스태미나 감소
     {
-        currentStamina = Mathf.Clamp(currentStamina - amount, 0f, maxStamina);
-        UpdateUI();
+        Hud.Instance.currentStamina = Mathf.Clamp(Hud.Instance.currentStamina - amount, 0f, Hud.Instance.maxStamina);
+        Hud.Instance.UpdateUI();
     }
     void Increcovery(float amount) //가만히있을때 스태미나 회복
     {
-        currentStamina = Mathf.Clamp(currentStamina + amount, 0f, maxStamina);
-        UpdateUI();
+        Hud.Instance.currentStamina = Mathf.Clamp(Hud.Instance.currentStamina + amount, 0f, Hud.Instance.maxStamina);
+        Hud.Instance.UpdateUI();
     }
-
     void IncDownrecovery(float amount) //앉았을때 스태미나 회복
     {
 
-        currentStamina = Mathf.Clamp(currentStamina + amount, 0f, maxStamina);
-        UpdateUI();
+        Hud.Instance.currentStamina = Mathf.Clamp(Hud.Instance.currentStamina + amount, 0f, Hud.Instance.maxStamina);
+        Hud.Instance.UpdateUI();
     }
-    private void UpdateUI() //ui업데이트
-    {
-        staminaSlider.value = currentStamina;
-        HpSlider.value = currentHp;
-    }
-
     
+
     //private IEnumerator StaminaLatecortine(float amount)
     //{
     //    yield return new WaitForSeconds(1f);

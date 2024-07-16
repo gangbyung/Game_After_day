@@ -12,6 +12,48 @@ public class GameManager : MonoBehaviour
     public GameObject scanObject;
     public bool isAction;
     public int talkIndex;
+
+    private static GameManager _instance;
+    private static readonly object _lock = new object();
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = FindObjectOfType<GameManager>();
+
+                        if (_instance == null)
+                        {
+                            GameObject singletonObject = new GameObject();
+                            _instance = singletonObject.AddComponent<GameManager>();
+                            singletonObject.name = nameof(GameManager) + " (Singleton)";
+                            DontDestroyOnLoad(singletonObject);
+                        }
+                    }
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void Action(GameObject scanObj)
     {
         scanObject = scanObj;
