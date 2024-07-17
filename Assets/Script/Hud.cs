@@ -15,7 +15,7 @@ public class Hud : MonoBehaviour
     public Slider Radiation_exposure_Slider;
     [Header("스태미나 기능")]//최대 스태미나, 현재 스태미나
     public float maxStamina = 100f;
-    public float currentStamina;
+    public float currentStamina = 100f;
     //달렸을때 스태미나 소모량, 점프하였을때 스태미나 소모량
     public float runStamina = 10f; //초당 5
     public float jumpStamina = 10f; //횟수당 10
@@ -23,7 +23,7 @@ public class Hud : MonoBehaviour
     public float recoveryStamina = 2f; //초당 2
     public float downRecoveryStamina = 10;
     [Header("HP 기능")]//HP 기능 추가
-    public float currentHp;
+    public float currentHp = 100f;
     public float maxHp = 100f;
     
     
@@ -68,7 +68,9 @@ public class Hud : MonoBehaviour
     }
     void Start()
     {
-        
+        currentStamina = maxStamina;
+        currentHp = maxHp;
+
     }
     public void UpdateUI() //ui업데이트
     {

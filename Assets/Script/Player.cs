@@ -54,8 +54,6 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        Hud.Instance.currentStamina = Hud.Instance.maxStamina;
-        Hud.Instance.currentHp = Hud.Instance.maxHp;
         
         
         Hud.Instance.UpdateUI();
