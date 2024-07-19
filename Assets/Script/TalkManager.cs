@@ -16,7 +16,7 @@ public class TalkManager : MonoBehaviour
         portraitData = new Dictionary<int, Sprite>();
         GenerateData();
     }
-    void GenerateData()
+    void GenerateData() //대사 저장 함수
     {
         talkData.Add(1000, new string[] { "안녕하신가...:0" , "이 이상은 지나갈수 없네:1"});
         talkData.Add(2000, new string[] { "넌 뭐야?!:0", "여긴 함부로 들어오는곳이 아니라고!!:1","꺼져!!:2" });

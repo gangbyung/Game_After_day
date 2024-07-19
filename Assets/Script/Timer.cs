@@ -14,6 +14,6 @@ public class Timer : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        timer.text = "late time : " + Mathf.Round(time);
+        timer.text = "time : " + Mathf.Round(time);
     }
 }

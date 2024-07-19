@@ -13,10 +13,10 @@ public class Player : MonoBehaviour
 
     
     public GameManager manager;
-
+    [Header("플레이어의 현재 맵 위치를 알려주는 기능")]
     public string currentMapName; //transferMap 스크립트에 있는 transferMapName 변수의 값을 저장.
 
-    //달리기, 걷기, 점프하기
+    [Header("플레이어 이동 관련 기능")]
     public float runSpeed;
     public float walkSpeed;
     public float currentSpeed;
@@ -86,16 +86,10 @@ public class Player : MonoBehaviour
         {
             currentSpeed = 0f;
             anim.SetBool("isCrouch",true);
-            IncDownrecovery(Hud.Instance.downRecoveryStamina * Time.deltaTime);
+            IncDownrecovery(Hud.Instance.downRecoveryStamina * Time.deltaTime); //앉는 중일때 스태미나 회복
 
         }
-        //앉는 중일때 스태미나 회복
-
-
-
         
-
-
         //애니메이션
         if (Mathf.Abs(rigid.velocity.x) < 0.2)
         {

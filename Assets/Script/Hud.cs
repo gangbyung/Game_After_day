@@ -7,7 +7,6 @@ using UnityEngine.WSA;
 
 public class Hud : MonoBehaviour
 {
-    private static Hud _instance;
     private static readonly object _lock = new object();
     [Header("슬라이더")]//슬라이더 연결
     public Slider staminaSlider;
@@ -25,9 +24,14 @@ public class Hud : MonoBehaviour
     [Header("HP 기능")]//HP 기능 추가
     public float currentHp = 100f;
     public float maxHp = 100f;
-    
-    
+    [Header("ESC 기능")]
+    public bool GameEscape = false; //현재 esc를 눌렀는지 누르지 않았는지 알려주는 변수
+    public GameObject pauseMainCanvas; //일시정지를 누를 시 나오는 ui
+    public Button ResumeButton; //이어하기 버튼 변수
+    public Button PauseButton; //일시정지 버튼 변수
+    public Button EscResumeButton; //esc를 누를때 나오는 퍼즈 버튼
 
+    private static Hud _instance;
     public static Hud Instance
     {
         get
@@ -68,16 +72,62 @@ public class Hud : MonoBehaviour
     }
     void Start()
     {
-        currentStamina = maxStamina;
+        //시작 시 스태미나와 Hp를 최댓값으로 설정
+        currentStamina = maxStamina; 
         currentHp = maxHp;
-
+        //버튼 클릭
+        PauseButton.onClick.AddListener(OnPauseButtonClicked);
+        ResumeButton.onClick.AddListener(OnResumeButtonCliked);
+        EscResumeButton.onClick.AddListener(OnResumeButtonCliked);
     }
-    public void UpdateUI() //ui업데이트
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(GameEscape)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+    public void UpdateUI() //ui업데이트 함수
     {
         staminaSlider.value = currentStamina;
         HpSlider.value = currentHp;
         Radiation_exposure_Slider.value = RadiationController.Instance.currentRadiationExposure;
     }
+    void OnPauseButtonClicked() //퍼즈 버튼 클릭
+    {
+        if (!GameEscape)
+            PauseGame();
+    }
+    void OnResumeButtonCliked() //리점 버튼클릭
+    {
+        if (GameEscape)
+            ResumeGame();
+    }
+    public void PauseGame() //퍼즈시 일어나는 효과
+    {
+        GameManager.Instance.Pause(); //시간정지
+        GameEscape = true;
+        pauseMainCanvas.SetActive(true); //버튼 끄기
 
-    
+        PauseButton.gameObject.SetActive(false);
+        ResumeButton.gameObject.SetActive(true);
+        EscResumeButton.gameObject.SetActive(true);
+    }
+    public void ResumeGame()
+    {
+        GameManager.Instance.Resume();
+        GameEscape = false;
+        pauseMainCanvas.SetActive(false);
+
+        ResumeButton.gameObject.SetActive(false);
+        PauseButton.gameObject.SetActive(true);
+        EscResumeButton.gameObject.SetActive(false);
+    }
 }

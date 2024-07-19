@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private static readonly object _lock = new object();
 
-    public static GameManager Instance
+    public static GameManager Instance //싱글톤 패턴
     {
         get
         {
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void Action(GameObject scanObj)
+    public void Action(GameObject scanObj) //오브젝트 스캔
     {
         scanObject = scanObj;
         ObjectData objData = scanObject.GetComponent<ObjectData>();
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         talkPanel.SetActive(isAction);
     }
 
-    void Talk(int id, bool isNpc)
+    void Talk(int id, bool isNpc) //대사 내보내기
     {
         string talkData = talkManager.GetTalk(id, talkIndex);
 
@@ -88,5 +88,13 @@ public class GameManager : MonoBehaviour
         }
         isAction = true;
         talkIndex++;
+    }
+    public void Pause() //게임 일시정지 함수
+    {
+        Time.timeScale = 0f;
+    }
+    public void Resume() //게임 일시정지 해제 함수
+    {
+        Time.timeScale = 1f;
     }
 }
