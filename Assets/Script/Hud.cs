@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.WSA;
+using TMPro;
 
 public class Hud : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class Hud : MonoBehaviour
     public Slider staminaSlider;
     public Slider HpSlider;
     public Slider Radiation_exposure_Slider;
+    [Header("%연결")]
+    public TextMeshProUGUI StaminaPer;
+    public TextMeshProUGUI HpPer;
+    public TextMeshProUGUI Radiation_exposurePer;
+
+    [Header("인벤토리")]//인벤토리연결
+    public GameObject InventoryPanel; //인벤토리 판넬
+    bool activeInventory = false; //인벤토리가 켜져있는지 꺼져있는지 알려주는 변수
     [Header("스태미나 기능")]//최대 스태미나, 현재 스태미나
     public float maxStamina = 100f;
     public float currentStamina = 100f;
@@ -79,10 +88,12 @@ public class Hud : MonoBehaviour
         PauseButton.onClick.AddListener(OnPauseButtonClicked);
         ResumeButton.onClick.AddListener(OnResumeButtonCliked);
         EscResumeButton.onClick.AddListener(OnResumeButtonCliked);
+        //인벤토리 끄기
+        InventoryPanel.SetActive(activeInventory);
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && activeInventory == false) //게임 일시정지 호출
         {
             if(GameEscape)
             {
@@ -93,6 +104,22 @@ public class Hud : MonoBehaviour
                 PauseGame();
             }
         }
+        if (Input.GetKeyDown(KeyCode.I) && GameEscape == false) //인벤토리 호출
+        {
+            activeInventory = !activeInventory;
+            InventoryPanel.SetActive(activeInventory);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(activeInventory)
+            {
+                activeInventory = false;
+                InventoryPanel.SetActive(activeInventory);
+            }
+        }
+        StaminaPer.text = currentStamina.ToString("F0") + "%";
+        HpPer.text = currentHp.ToString("F0") + "%";
+        Radiation_exposurePer.text = RadiationController.Instance.currentRadiationExposure.ToString("F0") + "%";
     }
     public void UpdateUI() //ui업데이트 함수
     {
@@ -120,7 +147,7 @@ public class Hud : MonoBehaviour
         ResumeButton.gameObject.SetActive(true);
         EscResumeButton.gameObject.SetActive(true);
     }
-    public void ResumeGame()
+    public void ResumeGame() //이어하기
     {
         GameManager.Instance.Resume();
         GameEscape = false;
