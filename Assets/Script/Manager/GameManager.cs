@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     public GameObject talkPanel;
     public Image portraiImg;
     public Text talkText;
+    public Text NameText;
     public GameObject scanObject;
     public bool isAction;
     public int talkIndex;
+    public int NameIndex;
 
     private static GameManager _instance;
     private static readonly object _lock = new object();
@@ -66,16 +68,20 @@ public class GameManager : MonoBehaviour
     void Talk(int id, bool isNpc) //대사 내보내기
     {
         string talkData = talkManager.GetTalk(id, talkIndex);
+        
+        string NameData = talkManager.GetName(id, NameIndex);
 
         if(talkData == null)
         {
             isAction = false;
             talkIndex = 0;
+            NameIndex = 0;
             return;
         }
         if(isNpc)
         {
             talkText.text = talkData.Split(':')[0];
+            NameText.text = NameData.Split('&')[0];
 
             portraiImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
             portraiImg.color = new Color(1, 1, 1, 1);
@@ -83,11 +89,13 @@ public class GameManager : MonoBehaviour
         else
         {
             talkText.text = talkData;
+            NameText.text = NameData;
 
             portraiImg.color = new Color(1, 1, 1, 0);
         }
         isAction = true;
         talkIndex++;
+        NameIndex++;
     }
     public void Pause() //게임 일시정지 함수
     {
