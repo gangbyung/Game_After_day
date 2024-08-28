@@ -17,33 +17,83 @@ public class TalkManager : MonoBehaviour
     Dictionary<int, string[]> talkData;
     Dictionary<int, string[]> NameData;
     Dictionary<int, Sprite> portraitData;
-
+        
     public Sprite[] portraitArr;
+    public Sprite[] player_portraitArr;
+
+    public static TalkManager instance { get; private set; }
+
 
     void Awake()
     {
-        talkData = new Dictionary<int, string[]>();
-        NameData = new Dictionary<int, string[]>();
-        portraitData = new Dictionary<int, Sprite>();
-        GenerateData();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            talkData = new Dictionary<int, string[]>();
+            NameData = new Dictionary<int, string[]>();
+            portraitData = new Dictionary<int, Sprite>();
+            GenerateData();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void GenerateData()
     {
-        talkData.Add(1000, new string[] { "안녕하신가...:0", "이 이상은 지나갈 수 없네:1" });
-        NameData.Add(1000, new string[] { "병구&0", "병구&1" });
+        //NPC 1 선캡아줌마 대사
+        talkData.Add(1000, new string[] { "어유, 간만에 산책나왔더니만 계속 날씨가 이모양이네 ...:0", "발전소에서 뭔가 생긴 이후부터 하늘이 기분나쁘게 먹구름만 가득하지 뭐야:1", "그러고 보니 총각, 옛날에 저기서 일한다고 했었던 것 같은데, 뭔지 알어?:2" , "아마 발전소 폭발이랑 연관은 없을 거에요.:3", "그래? 그럼 뭐 그렇게 큰 일도 아니구만.:4" , "아, 조금있으면 장마철이기도 했구만,:5", "'...상황이 어떻게 되고 있는지는 몰라도 호우로 방사능 물질이 근방에 유출되면 큰일이 날텐데':6" });
+        NameData.Add(1000, new string[] { "선캡아줌마&0", "선캡아줌마&1", "선캡아줌마&2", "주인공&3", "선캡아줌마&4", "선캡아줌마&5", "주인공&6" });
 
-        talkData.Add(2000, new string[] { "넌 뭐야?!:0", "여긴 함부로 들어오는 곳이 아니라고!!:1", "꺼져!!:2" });
-        NameData.Add(2000, new string[] { "수린&0", "수린&1", "병준&2" });
+        //NPC 2 청년 대사
+        talkData.Add(2000, new string[] { "1억...1억이라니..:0", "와, 무슨일인진 몰라도 축하드려요.:1", "내 집값..:2","어제까진 3억에 거래되던 내집이...으악!!!!:3" ,"'...무시하고 지나가자':4"});
+        NameData.Add(2000, new string[] { "청년&0", "주인공&1", "청년&2", "청년&3", "주인공&4" });
 
-        portraitData.Add(1000 + 0, portraitArr[0]);
+        //NPC 3 과일가게 아줌마
+        talkData.Add(3000, new string[] { "요즘 들어 뉴스에서 도통 안좋은 일들만 나온단 말이지.:0", "바로 요전번에는 그 서울 어디쯤에서 대지진이 일어났다고 하더만, 바로 오늘은 저기 공장 같은게 폭발했다 하지 않나:1", "하여간에 세상 참 흉흉하단 말이지...:2", "그래서 과일은 안 살겨?:3", "흠 그럼...:4","사과 하나만 주세요.:5" });
+        NameData.Add(3000, new string[] { "과일가게 아줌마&0", "과일가게 아줌마&1", "과일가게 아줌마&2", "과일가게 아줌마&3", "주인공&4","주인공&5" });
+
+        //NPC 4 경비원
+        talkData.Add(4000, new string[] { "저기요! 잠시만요:0", "네?:1", "여긴 외부인 출입 금지인데 어떻게..?:2", "혹시 이번에 오시기로한 최 교수님이신가요?:3", "그건 아닌데요.:4", "아하..이곳부턴 외부인 출입 금지라서 이 이상 앞으로 가시면 안됩니다.:5" });
+        NameData.Add(4000, new string[] { "???&0", "주인공&1", "경비원&2", "경비원&3", "주인공&4", "경비원&5" });
+        //---------------------------------------------------------------------------------------------------------------------------------
+
+        //NPC 1 선캡아줌마
+        portraitData.Add(1000 + 0, portraitArr[1]);
         portraitData.Add(1000 + 1, portraitArr[1]);
-        portraitData.Add(1000 + 2, portraitArr[2]);
-        portraitData.Add(1000 + 3, portraitArr[3]);
-        portraitData.Add(2000 + 0, portraitArr[4]);
-        portraitData.Add(2000 + 1, portraitArr[5]);
-        portraitData.Add(2000 + 2, portraitArr[6]);
-        portraitData.Add(2000 + 3, portraitArr[7]);
+        portraitData.Add(1000 + 2, portraitArr[1]);
+        portraitData.Add(1000 + 3, player_portraitArr[0]);
+        portraitData.Add(1000 + 4, portraitArr[1]);
+        portraitData.Add(1000 + 5, portraitArr[1]);
+        portraitData.Add(1000 + 6, player_portraitArr[0]);
+
+        //NPC 2 청년
+        portraitData.Add(2000 + 0, portraitArr[2]);
+        portraitData.Add(2000 + 1, player_portraitArr[0]);
+        portraitData.Add(2000 + 2, portraitArr[2]);
+        portraitData.Add(2000 + 3, portraitArr[2]);
+        portraitData.Add(2000 + 4, player_portraitArr[0]);
+
+        //NPC 3 과일가게 아줌마
+        portraitData.Add(3000 + 0, portraitArr[3]);
+        portraitData.Add(3000 + 1, portraitArr[3]);
+        portraitData.Add(3000 + 2, portraitArr[3]);
+        portraitData.Add(3000 + 3, portraitArr[3]);
+        portraitData.Add(3000 + 4, player_portraitArr[0]);
+        portraitData.Add(3000 + 5, player_portraitArr[0]);
+
+        //NPC 4 경비원
+        portraitData.Add(4000 + 0, portraitArr[4]);
+        portraitData.Add(4000 + 1, player_portraitArr[0]);
+        portraitData.Add(4000 + 2, portraitArr[4]);
+        portraitData.Add(4000 + 3, portraitArr[4]);
+        portraitData.Add(4000 + 4, player_portraitArr[0]);
+        portraitData.Add(4000 + 5, portraitArr[4]);
+
+        //NPC 5 후배
+
     }
 
     public string GetTalk(int id, int talkIndex)
@@ -67,8 +117,9 @@ public class TalkManager : MonoBehaviour
         Sprite portrait = portraitData[id + portraitIndex];
 
         // 특정 조건을 만족하면 UI를 활성화
-        if (id == 2000 && portraitIndex == 2)
+        if (id == 4000 && portraitIndex == 5)
         {
+            Debug.Log("나 뜰께ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ");
             ShowChoiceUI("선택지 1", "선택지 2", (choice) =>
             {
                 if (choice == 1)

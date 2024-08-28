@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TransferMap : MonoBehaviour
 {
+    
     public string transferMapName;
 
     private Player thePlayer;
@@ -21,6 +22,10 @@ public class TransferMap : MonoBehaviour
             SceneManager.LoadScene(transferMapName); //파트 0으로 이동하기
         }
 
+    }
+    public void GameStartScene()
+    {
+        SceneManager.LoadScene(0);
     }
     
 }

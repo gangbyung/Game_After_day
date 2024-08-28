@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce278453e0d22c74b9fd34a93299542e
+guid: f94bd8be6f196964c9ed5e5c89382187
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SunCapAjumma_0
+      name: youth_0
       rect:
         serializedVersion: 2
         x: 48
         y: 28
-        width: 49
-        height: 78
+        width: 27
+        height: 79
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24001dc91fdefe94e8a961553c3200c3
-      internalID: -995610514
+      spriteID: 5b7c643c86c03cc449997e016eea905b
+      internalID: -510147909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SunCapAjumma_1
+      name: youth_1
       rect:
         serializedVersion: 2
         x: 0
         y: 65
-        width: 76
-        height: 41
+        width: 75
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55c31853524852544ba2fff4645e6554
-      internalID: -1623790378
+      spriteID: c18c0314bc49ffd4c9aa719dac3ad4c9
+      internalID: 458443121
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SunCapAjumma_0: -995610514
-      SunCapAjumma_1: -1623790378
+      youth_0: -510147909
+      youth_1: 458443121
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
