@@ -8,6 +8,8 @@ using TMPro;
 
 public class Hud : MonoBehaviour
 {
+    Inventory inven;
+
     private static readonly object _lock = new object();
     [Header("슬라이더")]//슬라이더 연결
     public Slider staminaSlider;
@@ -21,6 +23,12 @@ public class Hud : MonoBehaviour
     [Header("인벤토리")]//인벤토리연결
     public GameObject InventoryPanel; //인벤토리 판넬
     bool activeInventory = false; //인벤토리가 켜져있는지 꺼져있는지 알려주는 변수
+
+    public Slot[] slots;
+    public Transform slotHolder;
+
+
+
     [Header("스태미나 기능")]//최대 스태미나, 현재 스태미나
     public float maxStamina = 100f;
     public float currentStamina = 100f;
@@ -81,6 +89,10 @@ public class Hud : MonoBehaviour
     }
     void Start()
     {
+        inven = Inventory.instance;
+        slots = slotHolder.GetComponentsInChildren<Slot>();
+        inven.onSlotCountChange += SlotChange;
+        inven.onChangeItem += RedrawSlotUI;
         //시작 시 스태미나와 Hp를 최댓값으로 설정
         currentStamina = maxStamina; 
         currentHp = maxHp;
@@ -91,7 +103,8 @@ public class Hud : MonoBehaviour
         //인벤토리 끄기
         InventoryPanel.SetActive(activeInventory);
     }
-    void Update()
+    
+        void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && activeInventory == false) //게임 일시정지 호출
         {
@@ -156,5 +169,36 @@ public class Hud : MonoBehaviour
         ResumeButton.gameObject.SetActive(false);
         PauseButton.gameObject.SetActive(true);
         EscResumeButton.gameObject.SetActive(false);
+    }
+
+    private void SlotChange(int val)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].slotnum = i;
+
+            if (i < inven.SlotCnt)
+                slots[i].GetComponent<Button>().interactable = true;
+            else
+                slots[i].GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void AddSlot()
+    {
+        inven.SlotCnt++;
+    }
+
+    void RedrawSlotUI()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].RemoveSlot();
+        }
+        for(int i = 0;i < inven.items.Count; i++)
+        {
+            slots[i].item = inven.items[i];
+            slots[i].UpdateSlotUI();
+        }
     }
 }
