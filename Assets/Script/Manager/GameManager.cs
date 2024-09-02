@@ -19,9 +19,10 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public GameObject Hud;
     public GameObject TalkManager;
-    public GameObject MainCanera;
+    public GameObject MainCamera;
+    public GameObject GameObj;
 
-    public List<string> scenesToDestroy = new List<string> { "3.Endpart0", "99.EndGame" };
+    public string[] scenesToDestroy;
 
     private static GameManager _instance;
     private static readonly object _lock = new object();
@@ -40,10 +41,15 @@ public class GameManager : MonoBehaviour
 
                         if (_instance == null)
                         {
-                            GameObject singletonObject = new GameObject();
-                            _instance = singletonObject.AddComponent<GameManager>();
-                            singletonObject.name = nameof(GameManager) + " (Singleton)";
-                            DontDestroyOnLoad(singletonObject);
+                            //GameObject singletonObject = new GameObject();
+                            //_instance = singletonObject.AddComponent<GameManager>();
+                            //singletonObject.name = nameof(GameManager) + " (Singleton)";
+                            //DontDestroyOnLoad(singletonObject);
+                            
+                        }
+                        else
+                        {
+                            DontDestroyOnLoad(_instance.gameObject);
                         }
                     }
                 }
@@ -58,16 +64,18 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
+            
+            DontDestroyOnLoad(Player);
+            DontDestroyOnLoad(Hud);
+            DontDestroyOnLoad(TalkManager);
+            DontDestroyOnLoad(MainCamera);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else if (_instance != this)
         {
             Destroy(gameObject);
         }
-    }
-    void Start()
-    {
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public void Action(GameObject scanObj) //오브젝트 스캔
     {
@@ -121,15 +129,52 @@ public class GameManager : MonoBehaviour
 
 
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 만약 현재 씬이 지정된 씬 이름과 같다면
-        if (scenesToDestroy.Contains(scene.name))
+        if (System.Array.Exists(scenesToDestroy, element => element == scene.name))
         {
-            Destroy(Player); // 오브젝트를 파괴합니다.
-            Destroy(Hud); // 오브젝트를 파괴합니다.
-            Destroy(TalkManager); // 오브젝트를 파괴합니다.
-            Destroy(MainCanera); // 오브젝트를 파괴합니다.
+            // 각 오브젝트가 null인지 확인한 후 파괴합니다.
+            if (Player != null)
+            {
+                Destroy(Player); // 오브젝트를 파괴합니다.
+                Player = null; // 참조를 제거하여 가비지 컬렉터가 처리할 수 있도록 합니다.
+            }
+            if (Hud != null)
+            {
+                Destroy(Hud); // 오브젝트를 파괴합니다.
+                Hud = null;
+            }
+            if (TalkManager != null)
+            {
+                Destroy(TalkManager); // 오브젝트를 파괴합니다.
+                TalkManager = null;
+            }
+            if (MainCamera != null)
+            {
+                Destroy(MainCamera); // 오브젝트를 파괴합니다.
+                MainCamera = null;
+            }
+            if(GameObj != null)
+            {
+                Destroy(GameObj);
+                GameObj = null;
+            }
         }
+    }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    public void ResetGameData()
+    {
+        Debug.Log("초기화");
+    }
+    public void ResetSpecificObjects()
+    {
+        if (Player != null) Player.SetActive(true);
+        if (Hud != null) Hud.SetActive(true);
+        if (TalkManager != null) TalkManager.SetActive(true);
+        if (MainCamera != null) MainCamera.SetActive(true);
     }
 }

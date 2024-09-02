@@ -24,7 +24,7 @@ public class TalkManager : MonoBehaviour
 
     public static TalkManager instance { get; private set; }
 
-    TransferMap transferMap;
+    Changemap Chmap;
 
     void Awake()
     {
@@ -44,7 +44,7 @@ public class TalkManager : MonoBehaviour
     }
     void Start()
     {
-        transferMap = GetComponent<TransferMap>();
+        Chmap = GetComponent<Changemap>();
     }
     void GenerateData()
     {
@@ -131,8 +131,6 @@ public class TalkManager : MonoBehaviour
                 {
                     Debug.Log("첫 번째 선택지 선택됨");
                     SceneManager.LoadScene("3.Endpart0");
-                    
-                    
                 }
                 else if (choice == 2)
                 {
