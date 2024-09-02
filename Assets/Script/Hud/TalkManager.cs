@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TalkManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class TalkManager : MonoBehaviour
 
     public static TalkManager instance { get; private set; }
 
+    TransferMap transferMap;
 
     void Awake()
     {
@@ -40,7 +42,10 @@ public class TalkManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    void Start()
+    {
+        transferMap = GetComponent<TransferMap>();
+    }
     void GenerateData()
     {
         //NPC 1 선캡아줌마 대사
@@ -125,10 +130,14 @@ public class TalkManager : MonoBehaviour
                 if (choice == 1)
                 {
                     Debug.Log("첫 번째 선택지 선택됨");
+                    SceneManager.LoadScene("3.Endpart0");
+                    
+                    
                 }
                 else if (choice == 2)
                 {
                     Debug.Log("두 번째 선택지 선택됨");
+                    
                 }
             });
         }

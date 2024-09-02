@@ -6,6 +6,7 @@ using UnityEditor.UI;
 using UnityEngine.UI;
 using TMPro;
 using Unity.Mathematics;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -31,7 +32,8 @@ public class Player : MonoBehaviour
     GameObject scanObject;
 
     Vector3 dirVec;
-    
+
+    public string sceneToDestroy = "3.Endpart0";
 
     void Awake()
     {
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
             Instance = this;
 
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
             rigid = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             anim = GetComponent<Animator>();
@@ -204,10 +208,22 @@ public class Player : MonoBehaviour
         Hud.Instance.currentStamina = Mathf.Clamp(Hud.Instance.currentStamina + amount, 0f, Hud.Instance.maxStamina);
         Hud.Instance.UpdateUI();
     }
-    
+
 
     //private IEnumerator StaminaLatecortine(float amount)
     //{
     //    yield return new WaitForSeconds(1f);
     //}
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 만약 현재 씬이 지정된 씬 이름과 같다면
+        if (scene.name == sceneToDestroy)
+        {
+            Destroy(gameObject); // 오브젝트를 파괴합니다.
+        }
+    }
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // 오브젝트가 파괴될 때 이벤트 핸들러를 제거합니다.
+    }
 }

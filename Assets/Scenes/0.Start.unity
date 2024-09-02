@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 490624312}
   - component: {fileID: 490624311}
   - component: {fileID: 490624310}
+  - component: {fileID: 490624314}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -302,6 +303,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &490624314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490624309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ee2e20d5b582747b1248fe1a49f747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transferMapName: 
 --- !u!1 &778384514
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +605,6 @@ GameObject:
   - component: {fileID: 1935496110}
   - component: {fileID: 1935496109}
   - component: {fileID: 1935496108}
-  - component: {fileID: 1935496111}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -663,9 +676,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935496111}
-        m_TargetAssemblyTypeName: startbutton, Assembly-CSharp
-        m_MethodName: gamestart
+      - m_Target: {fileID: 490624314}
+        m_TargetAssemblyTypeName: TransferMap, Assembly-CSharp
+        m_MethodName: Go_1_part0
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -713,18 +726,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935496106}
   m_CullTransparentMesh: 1
---- !u!114 &1935496111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935496106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33b99b1d018b4446afe9b23399e33f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1982287451
 GameObject:
   m_ObjectHideFlags: 0

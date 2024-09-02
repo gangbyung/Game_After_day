@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ee2e20d5b582747b1248fe1a49f747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transferMapName: 4.part3
+  transferMapName: 2.part1
 --- !u!224 &321224476 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7341262401137183310, guid: 3a102d90e12749e46b8eb12c07a3596c, type: 3}
@@ -910,6 +910,7 @@ MonoBehaviour:
   walkSpeed: 4
   currentSpeed: 0
   jumpPower: 15
+  sceneToDestroy: 3.Endpart0
 --- !u!95 &362873063
 Animator:
   serializedVersion: 5
@@ -1645,6 +1646,13 @@ MonoBehaviour:
   isAction: 0
   talkIndex: 0
   NameIndex: 0
+  Player: {fileID: 362873061}
+  Hud: {fileID: 1899424675879772375}
+  TalkManager: {fileID: 302544557}
+  MainCanera: {fileID: 519420028}
+  scenesToDestroy:
+  - 3.Endpart0
+  - 99.EndGame
 --- !u!4 &728815042
 Transform:
   m_ObjectHideFlags: 0

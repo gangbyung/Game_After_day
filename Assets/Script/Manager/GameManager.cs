@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,13 @@ public class GameManager : MonoBehaviour
     public bool isAction;
     public int talkIndex;
     public int NameIndex;
+
+    public GameObject Player;
+    public GameObject Hud;
+    public GameObject TalkManager;
+    public GameObject MainCanera;
+
+    public List<string> scenesToDestroy = new List<string> { "3.Endpart0", "99.EndGame" };
 
     private static GameManager _instance;
     private static readonly object _lock = new object();
@@ -55,6 +63,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    void Start()
+    {
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public void Action(GameObject scanObj) //오브젝트 스캔
     {
@@ -104,5 +117,19 @@ public class GameManager : MonoBehaviour
     public void Resume() //게임 일시정지 해제 함수
     {
         Time.timeScale = 1f;
+    }
+
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 만약 현재 씬이 지정된 씬 이름과 같다면
+        if (scenesToDestroy.Contains(scene.name))
+        {
+            Destroy(Player); // 오브젝트를 파괴합니다.
+            Destroy(Hud); // 오브젝트를 파괴합니다.
+            Destroy(TalkManager); // 오브젝트를 파괴합니다.
+            Destroy(MainCanera); // 오브젝트를 파괴합니다.
+        }
     }
 }
