@@ -151,6 +151,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: youth_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 105
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bb65d26b06d7f419a5ae0185a46efd
+      internalID: 467393031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -164,6 +185,7 @@ TextureImporter:
     nameFileIdTable:
       youth_0: -510147909
       youth_1: 458443121
+      youth_2: 467393031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

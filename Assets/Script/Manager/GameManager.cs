@@ -77,6 +77,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        if(talkManager == null)
+        {
+            talkManager = FindObjectOfType<TalkManager>();
+        }
+        if (talkManager == null)
+        {
+            Debug.LogError("TalkManager가 설정되지 않았습니다. TalkManager가 있는지 확인하세요.");
+        }
+    }
     public void Action(GameObject scanObj) //오브젝트 스캔
     {
         scanObject = scanObj;
@@ -88,6 +99,17 @@ public class GameManager : MonoBehaviour
 
     void Talk(int id, bool isNpc) //대사 내보내기
     {
+        if (talkManager != null)
+        {
+            // talkManager 인스턴스가 null이 아니면, 해당 메서드를 호출합니다.
+            string talkText = talkManager.GetTalk(id, 0);
+            Debug.Log(talkText);
+        }
+        else
+        {
+            Debug.LogError("TalkManager 인스턴스가 null입니다.");
+        }
+
         string talkData = talkManager.GetTalk(id, talkIndex);
         
         string NameData = talkManager.GetName(id, NameIndex);
