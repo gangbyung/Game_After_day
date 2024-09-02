@@ -62,7 +62,7 @@ public class Inventory : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter2D called with: " + collision.name);
+        //Debug.Log("OnTriggerEnter2D called with: " + collision.name);
 
         if (collision.CompareTag("FieldItem"))
         {

@@ -14,7 +14,7 @@ public class NPC : MonoBehaviour
         // Check if Npc_F_key array is properly assigned
         if (Npc_F_key == null || Npc_F_key.Length == 0)
         {
-            Debug.LogError("Npc_F_key array is not assigned in the Inspector.");
+            //Debug.LogError("Npc_F_key array is not assigned in the Inspector.");
             return;
         }
 
@@ -24,7 +24,7 @@ public class NPC : MonoBehaviour
         for (int i = 0; i < Npc_F_key.Length; i++)
         {
             string npcName = "NPC0" + (i + 1);  // Adjust to match your NPC names
-            Debug.Log($"Mapping {npcName} to Npc_F_key[{i}]");
+            //Debug.Log($"Mapping {npcName} to Npc_F_key[{i}]");
             npcFKeyDictionary.Add(npcName, Npc_F_key[i]);
         }
     }
@@ -37,12 +37,12 @@ public class NPC : MonoBehaviour
 
             if (npcFKeyDictionary.TryGetValue(gameObject.name, out GameObject npcFKey))
             {
-                Debug.Log($"{gameObject.name} found in dictionary. Activating associated GameObject.");
+                //Debug.Log($"{gameObject.name} found in dictionary. Activating associated GameObject.");
                 npcFKey.SetActive(true);
             }
             else
             {
-                Debug.LogError($"{gameObject.name} not found in dictionary!");
+                //Debug.LogError($"{gameObject.name} not found in dictionary!");
             }
         }
     }
@@ -51,16 +51,16 @@ public class NPC : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log($"Player exited collision with {gameObject.name}");
+            //Debug.Log($"Player exited collision with {gameObject.name}");
 
             if (npcFKeyDictionary.TryGetValue(gameObject.name, out GameObject npcFKey))
             {
-                Debug.Log($"{gameObject.name} found in dictionary. Deactivating associated GameObject.");
+                //Debug.Log($"{gameObject.name} found in dictionary. Deactivating associated GameObject.");
                 npcFKey.SetActive(false);
             }
             else
             {
-                Debug.LogError($"{gameObject.name} not found in dictionary!");
+                //Debug.LogError($"{gameObject.name} not found in dictionary!");
             }
         }
     }

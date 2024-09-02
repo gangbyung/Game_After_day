@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         {
             // talkManager 인스턴스가 null이 아니면, 해당 메서드를 호출합니다.
             string talkText = talkManager.GetTalk(id, 0);
-            Debug.Log(talkText);
+            
         }
         else
         {

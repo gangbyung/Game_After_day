@@ -23,6 +23,7 @@ public class TalkManager : MonoBehaviour
     public Sprite[] player_portraitArr;
 
     public GameObject[] Npcs;
+    public GameObject[] Buttons;
 
     public static TalkManager instance { get; private set; }
 
@@ -68,7 +69,7 @@ public class TalkManager : MonoBehaviour
 
         //NPC 5 후배
         talkData.Add(5000, new string[] { "어? 선배님 맞으시죠? 오랜만이네요! 저희 마지막으로 만난게 선배님 퇴직 기념으로 같이 술 마셨을 때니까...:0", "1년은 지났던 것 같은데! 아 혹시 여기로 차출되신건가요?:1", "어? 그건아니고 걷다보니 오게됐네:2", "아 그렇군요 사실 야기 일손이 꽤나 부족하거든요.. 발전소만 터진것이면 진작에 전문가들 밀어넣어서 지금쯤 해결되었을텐데..:3", "하필이면 그 터지기 1주일전에 서울에 대지진이 일어나는 바람에...:4", "..큼 잡설은 여기까지 하죠:5", "아무튼 이것도 인연인데, 한 번 구경이라도 하실래요??:6" });
-        NameData.Add(5000, new string[] { "주인공&0", "후배&1", "후배&2", "후배&3", "후배&4", "후배&5","후배&6" });
+        NameData.Add(5000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4", "후배&5","후배&6" });
         //---------------------------------------------------------------------------------------------------------------------------------
 
         //NPC 1 선캡아줌마
@@ -106,9 +107,9 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(4000 + 7, portraitArr[0]);
 
         //NPC 5
-        portraitData.Add(5000 + 0, player_portraitArr[0]);
+        portraitData.Add(5000 + 0, portraitArr[5]);
         portraitData.Add(5000 + 1, portraitArr[5]);
-        portraitData.Add(5000 + 2, portraitArr[5]);
+        portraitData.Add(5000 + 2, player_portraitArr[0]);
         portraitData.Add(5000 + 3, portraitArr[5]);
         portraitData.Add(5000 + 4, portraitArr[5]);
         portraitData.Add(5000 + 5, portraitArr[5]);
@@ -174,18 +175,20 @@ public class TalkManager : MonoBehaviour
             {
                 Npcs[0].SetActive(true);
             }
-            else if (id == 1000 && portraitIndex == 1)
+            else if (id == 5000 && portraitIndex == 6)
             {
-                ShowChoiceUI("다른 선택지 1", "다른 선택지 2", (choice) =>
+                ShowChoiceUI("따라간다", "집으로 돌아간다", (choice) =>
                 {
                     if (choice == 1)
                     {
-                        Debug.Log("id가 1000일 때 첫 번째 선택지 선택됨");
+                        //따라간다
+                        Buttons[0].SetActive(true);
                         // 여기에 첫 번째 선택에 따른 로직 추가
                     }
                     else if (choice == 2)
                     {
-                        Debug.Log("id가 1000일 때 두 번째 선택지 선택됨");
+                        //안따라감
+                        SceneManager.LoadScene("3.Endpart0");
                         // 여기에 두 번째 선택에 따른 로직 추가
                     }
                 });

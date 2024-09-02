@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RadiationController : MonoBehaviour
@@ -50,17 +49,45 @@ public class RadiationController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start()
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        // 코루틴 시작
-        StartRadiationExposure();
+        if (collision.CompareTag("Radiazon"))
+        {
+            StartRadiationExposure();
+        }
     }
 
-    void StartRadiationExposure()
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Radiazon"))
+        {
+            StartRadiationExposure();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Radiazon"))
+        {
+            EndRadiationExposure();
+        }
+    }
+
+    public void StartRadiationExposure()
     {
         if (radiationCoroutine == null)
         {
             radiationCoroutine = StartCoroutine(IncreaseRadiationExposure());
+        }
+    }
+
+    void EndRadiationExposure()
+    {
+        if (radiationCoroutine != null)
+        {
+            StopCoroutine(radiationCoroutine);
+            radiationCoroutine = null;
         }
     }
 
