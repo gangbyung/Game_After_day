@@ -24,15 +24,14 @@ public class TalkManager : MonoBehaviour
 
     public GameObject[] Buttons;
 
-    public static TalkManager instance { get; private set; }
+    public static TalkManager Instance { get; private set; }
 
     Changemap Chmap;
-    NpcAction npcaction;
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
             talkData = new Dictionary<int, string[]>();
             NameData = new Dictionary<int, string[]>();
@@ -47,7 +46,7 @@ public class TalkManager : MonoBehaviour
     void Start()
     {
         Chmap = GetComponent<Changemap>();
-        npcaction = GetComponent<NpcAction>();
+        NpcAction a = FindObjectOfType<NpcAction>();
     }
     void GenerateData()
     {
@@ -173,6 +172,7 @@ public class TalkManager : MonoBehaviour
             // 조건에 따라 UI를 활성화
             if (id == 4000 && portraitIndex == 7)
             {
+                NpcAction.Instance.NpcUnLock0();
                 //npc 활성화 함수
             }
             else if (id == 5000 && portraitIndex == 6)

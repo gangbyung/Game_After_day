@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour
             {
                 if (AddItem(fieldItems.GetItem()))
                 {
-                    Debug.Log("Item added and will be destroyed: " + fieldItems.GetItem());
+                    //Debug.Log("Item added and will be destroyed: " + fieldItems.GetItem());
                     fieldItems.DestroyItem();
                 }
                 else
@@ -86,7 +86,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("Collision did not have the correct tag.");
+            //Debug.Log("Collision did not have the correct tag.");
         }
     }
 }

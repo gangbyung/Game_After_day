@@ -1,12 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcAction : MonoBehaviour
 {
-    [SerializeField]
+    public static NpcAction Instance { get; private set; } // 싱글턴 인스턴스
+
     public GameObject[] Npcs;
 
-    public void NpcUnLock() => Npcs[0].SetActive(true);
-    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // 이미 인스턴스가 존재하면 이 객체를 파괴함
+        }
+    }
+
+    public void NpcUnLock0() => Npcs[0].SetActive(true);
 }
