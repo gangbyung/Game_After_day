@@ -22,13 +22,12 @@ public class TalkManager : MonoBehaviour
     public Sprite[] portraitArr;
     public Sprite[] player_portraitArr;
 
-    public GameObject[] Npcs;
     public GameObject[] Buttons;
 
     public static TalkManager instance { get; private set; }
 
     Changemap Chmap;
-
+    NpcAction npcaction;
     void Awake()
     {
         if (instance == null)
@@ -48,6 +47,7 @@ public class TalkManager : MonoBehaviour
     void Start()
     {
         Chmap = GetComponent<Changemap>();
+        npcaction = GetComponent<NpcAction>();
     }
     void GenerateData()
     {
@@ -173,7 +173,7 @@ public class TalkManager : MonoBehaviour
             // 조건에 따라 UI를 활성화
             if (id == 4000 && portraitIndex == 7)
             {
-                Npcs[0].SetActive(true);
+                //npc 활성화 함수
             }
             else if (id == 5000 && portraitIndex == 6)
             {
@@ -188,7 +188,7 @@ public class TalkManager : MonoBehaviour
                     else if (choice == 2)
                     {
                         //안따라감
-                        SceneManager.LoadScene("3.Endpart0");
+                        Changemap.Go_3_Endpart0();
                         // 여기에 두 번째 선택에 따른 로직 추가
                     }
                 });

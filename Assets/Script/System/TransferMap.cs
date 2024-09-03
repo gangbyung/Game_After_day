@@ -18,7 +18,7 @@ public class TransferMap : MonoBehaviour
         if (collision.gameObject.name == "Player") //오브젝트의 이름이 플레이어라면
         {
             thePlayer.currentMapName = transferMapName;
-            SceneManager.LoadScene(transferMapName); //파트 0으로 이동하기
+            LoadingSceneManager.LoadScene(transferMapName); //파트 0으로 이동하기
         }
 
     }
