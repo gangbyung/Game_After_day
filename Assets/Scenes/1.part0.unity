@@ -9060,7 +9060,7 @@ MonoBehaviour:
   progressBar: {fileID: 8412881380403778078}
   fadePanel: {fileID: 6104523131212545775}
   fadeDuration: 1
-  delayBeforeSceneLoad: 0.5
+  delayBeforeSceneLoad: 0.1
 --- !u!1 &6053350816028421127
 GameObject:
   m_ObjectHideFlags: 0

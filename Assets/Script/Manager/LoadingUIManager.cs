@@ -11,7 +11,7 @@ public class LoadingUIManager : MonoBehaviour
     public Slider progressBar;           // 프로그레스바 UI
     public Image fadePanel;              // 페이드 아웃 효과를 위한 패널
     public float fadeDuration = 1f;      // 페이드 아웃 지속 시간
-    public float delayBeforeSceneLoad = 0.5f;  // 씬 전환 전 대기 시간
+    public float delayBeforeSceneLoad = 0.1f;  // 씬 전환 전 대기 시간
 
     private Dictionary<string, string> sceneToMapName = new Dictionary<string, string>();
 
@@ -99,7 +99,7 @@ public class LoadingUIManager : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        float elapsedTime = 0f;
+        float elapsedTime = 1f;
 
         while (elapsedTime < fadeDuration)
         {
@@ -114,16 +114,8 @@ public class LoadingUIManager : MonoBehaviour
         // 페이드 아웃이 완료된 후 패널 비활성화
         fadePanel.gameObject.SetActive(false);
 
-        // 페이드 아웃이 완료된 후 씬 전환
-        //LoadNextScene();
+        
     }
-
-    private void LoadNextScene()
-    {
-        // 다음 씬을 로드 (로딩 씬을 제외한 실제 게임 씬 이름 사용)
-        SceneManager.LoadScene("YourNextSceneName"); // 여기에 실제 다음 씬 이름을 입력
-    }
-
     private void OnDestroy()
     {
         // 씬이 파괴될 때 리스너 제거
