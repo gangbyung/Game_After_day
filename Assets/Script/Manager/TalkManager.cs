@@ -13,6 +13,8 @@ public class TalkManager : MonoBehaviour
     public TextMeshProUGUI choiceButton1Text; // 첫 번째 버튼의 텍스트
     public TextMeshProUGUI choiceButton2Text; // 두 번째 버튼의 텍스트
 
+    public GameObject MiniGamePanel;
+
     private Action<int> onChoiceMade;  // 버튼 클릭 시 실행될 콜백 함수
 
     Dictionary<int, string[]> talkData;
@@ -181,6 +183,7 @@ public class TalkManager : MonoBehaviour
                 {
                     if (choice == 1)
                     {
+                        //MiniGamePanel.SetActive(true);
                         //따라간다
                         Buttons[0].SetActive(true);
                         // 여기에 첫 번째 선택에 따른 로직 추가
