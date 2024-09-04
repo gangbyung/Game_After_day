@@ -9,6 +9,7 @@ TagManager:
   - NPC
   - FieldItem
   - Radiazon
+  - zon
   layers:
   - Default
   - TransparentFX

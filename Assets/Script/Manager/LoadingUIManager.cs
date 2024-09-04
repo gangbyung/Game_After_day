@@ -104,7 +104,7 @@ public class LoadingUIManager : MonoBehaviour
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            //fadePanel.color = new Color(0, 0, 0, Mathf.Clamp01(elapsedTime / fadeDuration));
+            
             yield return null;
         }
 
