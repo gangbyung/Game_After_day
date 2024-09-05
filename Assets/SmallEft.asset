@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc3191cb11617d48a28957919e6f5bd, type: 3}
   m_Name: SmallEft
   m_EditorClassIdentifier: 
-  healingPoint: 0
+  healingPoint: 20

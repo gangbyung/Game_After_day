@@ -48,7 +48,7 @@ public class TalkManager : MonoBehaviour
     void Start()
     {
         Chmap = GetComponent<Changemap>();
-        NpcAction a = FindObjectOfType<NpcAction>();
+        //NpcAction a = FindObjectOfType<NpcAction>();
     }
     void GenerateData()
     {

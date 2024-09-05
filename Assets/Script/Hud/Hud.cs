@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Hud : MonoBehaviour
 {
     Inventory inven;
+    Changemap chmap;
 
     private static readonly object _lock = new object();
     [Header("슬라이더")]//슬라이더 연결
@@ -46,6 +48,8 @@ public class Hud : MonoBehaviour
     public Button ResumeButton; //이어하기 버튼 변수
     public Button PauseButton; //일시정지 버튼 변수
     public Button EscResumeButton; //esc를 누를때 나오는 퍼즈 버튼
+
+    public bool isDead;
 
     private static Hud _instance;
     public static Hud Instance
@@ -92,6 +96,8 @@ public class Hud : MonoBehaviour
         slots = slotHolder.GetComponentsInChildren<Slot>();
         inven.onSlotCountChange += SlotChange;
         inven.onChangeItem += RedrawSlotUI;
+
+        chmap = GetComponent<Changemap>();
         //시작 시 스태미나와 Hp를 최댓값으로 설정
         currentStamina = maxStamina; 
         currentHp = maxHp;
@@ -116,6 +122,7 @@ public class Hud : MonoBehaviour
                 PauseGame();
             }
         }
+
         if (Input.GetKeyDown(KeyCode.I) && GameEscape == false) //인벤토리 호출
         {
             activeInventory = !activeInventory;
@@ -129,9 +136,12 @@ public class Hud : MonoBehaviour
                 InventoryPanel.SetActive(activeInventory);
             }
         }
+
         StaminaPer.text = currentStamina.ToString("F0") + "%";
         HpPer.text = currentHp.ToString("F0") + "%";
         Radiation_exposurePer.text = RadiationController.Instance.currentRadiationExposure.ToString("F0") + "%";
+
+        GameOver();
     }
     public void UpdateUI() //ui업데이트 함수
     {
@@ -200,4 +210,15 @@ public class Hud : MonoBehaviour
             slots[i].UpdateSlotUI();
         }
     }
+
+    void GameOver()
+    {
+        if(currentHp < 1f && !isDead)
+        {
+            Changemap.Go_99_EndGame();
+            isDead = true;
+        }
+        
+    }
+    
 }
