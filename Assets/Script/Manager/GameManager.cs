@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         talkPanel.SetActive(isAction);
     }
 
-    void Talk(int id, bool isNpc) //대사 내보내기
+    public void Talk(int id, bool isNpc) //대사 내보내기
     {
         if (talkManager != null)
         {
