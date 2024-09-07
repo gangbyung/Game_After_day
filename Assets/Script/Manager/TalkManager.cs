@@ -184,7 +184,7 @@ public class TalkManager : MonoBehaviour
             "아직은:1",
             "대강 다 둘러본 것 같아:2"
         });
-        NameData.Add(12000, new string[] { "후배&0", "주인공&1" });
+        NameData.Add(12000, new string[] { "후배&0", "주인공&1","주인공&2"});
 
         // NPC 4 후배(2부 루트)
         talkData.Add(13000, new string[] {
@@ -198,7 +198,7 @@ public class TalkManager : MonoBehaviour
 
         // NPC 4 후배(1부)
         talkData.Add(14000, new string[]{
-            "정말입니까...?! 긍정적인 답변이 나올 것이라 생각하질 못했습니다.::0",
+            "정말입니까...?! 긍정적인 답변이 나올 것이라 생각하질 못했습니다.:0",
             "그럼 조력에 관한 것은 제가 대신 말해두겠습니다.:1",
             "... 감사합니다. 쉽지 않은 결정을 내려주셔서:2",
             "감사하면 다음에 밥이나 한번 사:3",
@@ -368,6 +368,12 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(11000 + 13, portraitArr[8]);
         portraitData.Add(11000 + 14, portraitArr[8]);
         portraitData.Add(11000 + 15, portraitArr[8]);
+
+        //NPC 4 후배
+        portraitData.Add(12000 + 0, portraitArr[4]);
+        portraitData.Add(12000 + 1, portraitArr[4]);
+        portraitData.Add(12000 + 2, portraitArr[4]);
+
 
         //NPC 4 후배 
         portraitData.Add(13000 + 0, portraitArr[4]);

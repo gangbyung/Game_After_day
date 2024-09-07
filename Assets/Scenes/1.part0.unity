@@ -778,7 +778,7 @@ MonoBehaviour:
   manager: {fileID: 728815041}
   currentMapName: 
   runSpeed: 7
-  walkSpeed: 4
+  walkSpeed: 100
   currentSpeed: 0
   jumpPower: 15
 --- !u!95 &362873063
@@ -5502,7 +5502,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3047077640034313798}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
