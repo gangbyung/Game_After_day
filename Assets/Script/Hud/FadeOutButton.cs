@@ -35,7 +35,7 @@ public class FadeOutButton : MonoBehaviour
 
         // 페이드 아웃이 완료된 후, 버튼을 비활성화합니다.
         canvasGroup.alpha = 0f;
-        button.interactable = false;
+        Destroy(this);
         
         gameObject.SetActive(false);
     }
