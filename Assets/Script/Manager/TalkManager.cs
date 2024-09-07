@@ -219,6 +219,59 @@ public class TalkManager : MonoBehaviour
         });
         NameData.Add(15000, new string[] { "후배&0", "주인공&1", "후배&2", "주인공&3", "후배&4", "주인공&5" });
 
+        //NPC 4후배
+        talkData.Add(16000, new string[] {
+            "도와주셔서 감사합니다. 그럼 어디보자...:0",
+            "아, 찾았다! 여기 있어요.:1",
+            "... 이거 기한이 좀 오래된 것 같은데:2",
+            "음... 원래라면 이번주에 조사원들이 재탐색을 마치고 그에 관해 보고서를 쓸 예정이었는데 말이죠,:3",
+            "... 이번에 시설을 확인하러 간 조사원들이 들어가기도 전에 사고로 인해 모두 응급시설로 실려갔거든요.당장 부상으로 끙끙대는 사람들한테 일에 대해서 말할수도 없는 노릇인지라... 뭐, 그렇게 되었네요.:4",
+            "저런:5",
+            "그럼 어떻게 확인을 해야 하는거지?:6",
+            "별 수 있나요. 막연하게 정부에서 새 인력을 파견해 주거나 그 분들의 부상이 다 나을 때까지 기다릴 수도 없는 노릇이고, 저희라도 가는 수 밖에요.:7",
+            "당장 확인을 안하면 또 어떻게 될 지 모르는 상황이니까요.:8",
+            "그럼 내가 한번 가볼게.:9",
+            "위험하지 않으시겠어요?:10",
+            "... 여기에서 발전소 탐사까지 할 만큼의 시간 여유가 있는 사람이 없어 보여서.:11",
+            "아하... 참고로 방사능은 아직 안 무너진 외부 방호벽 때문에 발전소 바깥으로만 유출되지 않았을 뿐, 안쪽은 장비 없이 맨몸으로 몇 초만 머무른다면 몇 분도 채 못버티고 흐물흐물 해질거에요.:12",
+            "게다가 지금 추측되는 시설 내의 방사능 수치로 보자면 제대로 된 장비를 착용하고 들어간다 하더라도 100% 완벽하게 방호가 불가능해요.:13",
+            "오래 머문다면... 네, 방사능의 영향을 꽤 많이 받게 될거에요. 피부에서 체렌코프 현상을 관측할 수 있는건 덤이고요.:14",
+            "그런데도 정말로 가실 수 있으세요?:15",
+            "해보지 뭐.:16",
+            "... 대단하시네요.:17",
+            "그럼 탐사팀 분들이 사용하시는 장비 창고까지 안내해 드릴게요.:18",
+            "반출 허가는 진작에 받아놨거든요.:19",
+        });
+        NameData.Add(16000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후베&4", "주인공&5", "주인공&6", "후배&7", "후배&8", "주인공&9", "후배&10", "주인공&11", "후배&12", "후배&13", "후배&14", "후배&15", "후배&16", "후배&17", "후배&18", "후배&19" });
+
+        //NPC 4 후배
+        talkData.Add(17000, new string[] {
+            "여기가 창고에요.:0",
+            "원래는 제가 가려고 챙겨둔건데... 선배님이 가신다 하실 줄은 몰랐네요.:1",
+            "눈대중으로 봤을때 저랑 체격이 비슷하시니 아마 맞으실거에요.:2",
+            //바구니 상호작용 후 아이템 획득
+        });
+        NameData.Add(17000, new string[] { "후배&0", "후배&1", "후배&2" });
+
+        //NPC 4 후배
+        talkData.Add(18000, new string[] {
+            "조심히 다녀오십쇼:0"
+        });
+        NameData.Add(18000, new string[] { "후배&0" });
+
+        //NPC 6 기술자1
+        talkData.Add(19000, new string[] {
+            "며칠도 안돼서 이런 일을 맡기게 되어 미안하구만.:0"
+        });
+        NameData.Add(19000, new string[] { "기술자1&0" });
+
+        //NPC 7 기술자2
+        talkData.Add(20000, new string[] { "수고가 많으십니다. 잘 다녀오십쇼.:0" });
+        NameData.Add(20000, new string[] { "기술자2:0" });
+
+        //NPC 8 기술자3
+        talkData.Add(21000, new string[] { "탐사가 주 목적이긴 하지만 가장 중요한 건 건강입니다.:0" });
+        NameData.Add(21000, new string[] { "기술자3&0" });
         //NPC 1 선캡아줌마
         portraitData.Add(1000 + 0, portraitArr[1]);
         portraitData.Add(1000 + 1, portraitArr[1]);
@@ -339,6 +392,44 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(15000 + 4, portraitArr[4]);
         portraitData.Add(15000 + 5, portraitArr[4]);
 
+        //NPC 4 후배
+        portraitData.Add(16000 + 0, portraitArr[4]);
+        portraitData.Add(16000 + 1, portraitArr[4]);
+        portraitData.Add(16000 + 2, portraitArr[4]);
+        portraitData.Add(16000 + 3, portraitArr[4]);
+        portraitData.Add(16000 + 4, portraitArr[4]);
+        portraitData.Add(16000 + 5, portraitArr[4]);
+        portraitData.Add(16000 + 6, portraitArr[4]);
+        portraitData.Add(16000 + 7, portraitArr[4]);
+        portraitData.Add(16000 + 8, portraitArr[4]);
+        portraitData.Add(16000 + 9, portraitArr[4]);
+        portraitData.Add(16000 + 10, portraitArr[4]);
+        portraitData.Add(16000 + 11, portraitArr[4]);
+        portraitData.Add(16000 + 12, portraitArr[4]);
+        portraitData.Add(16000 + 13, portraitArr[4]);
+        portraitData.Add(16000 + 14, portraitArr[4]);
+        portraitData.Add(16000 + 15, portraitArr[4]);
+        portraitData.Add(16000 + 16, portraitArr[4]);
+        portraitData.Add(16000 + 17, portraitArr[4]);
+        portraitData.Add(16000 + 18, portraitArr[4]);
+        portraitData.Add(16000 + 19, portraitArr[4]);
+
+        //NPC 4후배
+        portraitData.Add(17000 + 0, portraitArr[4]);
+        portraitData.Add(17000 + 1, portraitArr[4]);
+        portraitData.Add(17000 + 2, portraitArr[4]);
+
+        //NPC 4후배
+        portraitData.Add(18000 + 0, portraitArr[4]);
+
+        //NPC 6 기술자 1
+        portraitData.Add(19000 + 0, portraitArr[6]);
+
+        //NPC 7 기술자 2
+        portraitData.Add(20000 + 0, portraitArr[7]);
+
+        //NPC 8 기술자 3
+        portraitData.Add(21000 + 0, portraitArr[8]);
 
     }
 
