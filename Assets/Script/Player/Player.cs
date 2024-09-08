@@ -115,15 +115,39 @@ public class Player : MonoBehaviour
             dirVec = Vector3.right;
 
         //대사출력
-        if(Input.GetKeyDown(KeyCode.F) && scanObject != null)
+        //if(Input.GetKeyDown(KeyCode.F) && scanObject != null)
+        //{
+        //    manager.Action(scanObject);
+        //}
+        Next();
+    }
+    public void Next()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && scanObject != null)
+        {
+            manager.NextTalk();
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        scanObject = collision.gameObject;
+        Debug.Log(scanObject);
+        if (collision.CompareTag("NPC") && scanObject != null)
         {
             manager.Action(scanObject);
+            
+        }
+        
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("NPC") && scanObject != null)
+        {
+            scanObject = null;
         }
     }
     void FixedUpdate()
     {
-        
-
         Movement();
 
 
@@ -145,15 +169,16 @@ public class Player : MonoBehaviour
 
             }
         }
-        Debug.DrawRay(rigid.position, dirVec * 1f, new Color(0,1,0));
-        RaycastHit2D rayHitObject = Physics2D.Raycast(rigid.position, dirVec, 1f, LayerMask.GetMask("Object"));
+        //Debug.DrawRay(rigid.position, dirVec * 1f, new Color(0,1,0));
+        //RaycastHit2D rayHitObject = Physics2D.Raycast(rigid.position, dirVec, 1f, LayerMask.GetMask("Object"));
 
-        if (rayHitObject.collider != null)
-        {
-            scanObject = rayHitObject.collider.gameObject;
-        }
-        else
-            scanObject = null;
+        //if (rayHitObject.collider != null)
+        //{
+        //    scanObject = rayHitObject.collider.gameObject;
+            
+        //}
+        ////else
+        //    //scanObject = null;
     }
         
     void Movement() //가로 움직임

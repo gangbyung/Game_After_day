@@ -37,6 +37,7 @@ public class NPC : MonoBehaviour
 
             if (npcFKeyDictionary.TryGetValue(gameObject.name, out GameObject npcFKey))
             {
+               
                 // Debug.Log($"{gameObject.name} found in dictionary. Activating associated GameObject.");
                 npcFKey.SetActive(true);
             }

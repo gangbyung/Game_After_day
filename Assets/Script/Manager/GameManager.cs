@@ -88,12 +88,31 @@ public class GameManager : MonoBehaviour
             Debug.LogError("TalkManager가 설정되지 않았습니다. TalkManager가 있는지 확인하세요.");
         }
     }
-    public void Action(GameObject scanObj) //오브젝트 스캔
+    public void Action(GameObject scanObj) // 오브젝트 스캔
     {
+        if (scanObj == null)
+        {
+            Debug.LogError("scanObj is null!");
+            return;
+        }
+
         scanObject = scanObj;
         ObjectData objData = scanObject.GetComponent<ObjectData>();
-        Talk(objData.id, objData.isNpc);
 
+        if (objData == null)
+        {
+            Debug.LogError("ObjectData component is missing on the scanned object!");
+            return;
+        }
+
+        Talk(objData.id, objData.isNpc);
+        talkPanel.SetActive(isAction);
+    }
+    public void NextTalk()
+    {
+        ObjectData objData = scanObject.GetComponent<ObjectData>();
+
+        Talk(objData.id, objData.isNpc);
         talkPanel.SetActive(isAction);
     }
 
