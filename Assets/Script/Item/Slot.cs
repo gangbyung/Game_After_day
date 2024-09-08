@@ -12,12 +12,14 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     public void UpdateSlotUI()
     {
+        itemIcon.color = new Color (255,255,255);
         itemIcon.sprite = item.itemImage;
         itemIcon.gameObject.SetActive(true);
     }
     public void RemoveSlot()
     {
         item = null;
+        itemIcon.color = new Color(20,20,20);
         itemIcon.gameObject.SetActive(false);
     }
     public void OnPointerUp(PointerEventData eventData)
