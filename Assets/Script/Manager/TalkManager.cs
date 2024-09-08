@@ -13,6 +13,8 @@ public class TalkManager : MonoBehaviour
     public TextMeshProUGUI choiceButton1Text; // 첫 번째 버튼의 텍스트
     public TextMeshProUGUI choiceButton2Text; // 두 번째 버튼의 텍스트
 
+    public GameObject talkPanel;
+
     public GameObject MiniGamePanel;
 
     private Action<int> onChoiceMade;  // 버튼 클릭 시 실행될 콜백 함수
@@ -102,8 +104,9 @@ public class TalkManager : MonoBehaviour
             "아 그렇군요 사실 야기 일손이 꽤나 부족하거든요.. 발전소만 터진것이면 진작에 전문가들 밀어넣어서 지금쯤 해결되었을텐데..:3",
             "하필이면 그 터지기 1주일전에 서울에 대지진이 일어나는 바람에...:4",
             "..큼 잡설은 여기까지 하죠:5",
-            "아무튼 이것도 인연인데, 한 번 구경이라도 하실래요??:6" });
-        NameData.Add(5000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4", "후배&5", "후배&6" });
+            "아무튼 이것도 인연인데, 한 번 구경이라도 하실래요??:6",
+            ":7"});
+        NameData.Add(5000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4", "후배&5", "후배&6","&7" });
         //---------------------------------------------------------------------------------------------------------------------------------
         //NPC 6 기술자1
         talkData.Add(6000, new string[]{
@@ -314,6 +317,7 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(5000 + 4, portraitArr[5]);
         portraitData.Add(5000 + 5, portraitArr[5]);
         portraitData.Add(5000 + 6, portraitArr[5]);
+        portraitData.Add(5000 + 7, portraitArr[0]);
 
         //NPC 6 기술자 1
         portraitData.Add(6000 + 0, portraitArr[6]);
@@ -498,7 +502,7 @@ public class TalkManager : MonoBehaviour
                 NpcAction.Instance.NpcUnLock0();
                 //npc 활성화 함수
             }
-            else if (id == 5000 && portraitIndex == 6)
+            else if (id == 5000 && portraitIndex == 7)
             {
                 ShowChoiceUI("따라간다", "집으로 돌아간다", (choice) =>
                 {
@@ -506,7 +510,12 @@ public class TalkManager : MonoBehaviour
                     {
                         //MiniGamePanel.SetActive(true);
                         //따라간다
+                        
                         Buttons[0].SetActive(true);
+                        if (talkPanel.activeSelf)
+                        {
+                            GameManager.Instance.NextTalk();
+                        }
                         // 여기에 첫 번째 선택에 따른 로직 추가
                     }
                     else if (choice == 2)

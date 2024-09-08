@@ -198,8 +198,8 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift)) //달리기
             {
                 currentSpeed = runSpeed;
-
-                DeRunStamina(Hud.Instance.runStamina * Time.deltaTime); //스태미나 감소
+                if(InputX != 0)
+                    DeRunStamina(Hud.Instance.runStamina * Time.deltaTime); //스태미나 감소
 
 
             }
