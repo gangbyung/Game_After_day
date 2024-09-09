@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class TalkManager : MonoBehaviour
 {
@@ -28,9 +29,11 @@ public class TalkManager : MonoBehaviour
 
     public GameObject[] Buttons;
 
+
     public static TalkManager Instance { get; private set; }
 
     Changemap Chmap;
+    public ImageFader imageFader;
     void Awake()
     {
         if (Instance == null)
@@ -51,6 +54,7 @@ public class TalkManager : MonoBehaviour
     {
         Chmap = GetComponent<Changemap>();
         //NpcAction a = FindObjectOfType<NpcAction>();
+        
     }
     void GenerateData()
     {
@@ -106,7 +110,25 @@ public class TalkManager : MonoBehaviour
             "..큼 잡설은 여기까지 하죠:5",
             "아무튼 이것도 인연인데, 한 번 구경이라도 하실래요??:6",
             ":7"});
-        NameData.Add(5000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4", "후배&5", "후배&6","&7" });
+        NameData.Add(5000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4", "후배&5", "후배&6", "&7" });
+
+        //NPC 5 후배 선택지 1
+        talkData.Add(5100, new string[] {
+            "아..그럼 어쩔수 없죠..:0",
+            "조심히 들어가십쇼:1",
+            ":2"
+        });
+        NameData.Add(5100, new string[] { "후배&0", "후배&1","&2" });
+
+        //NPC 5 후배 선택지 2
+        talkData.Add(5200, new string[] {
+            "아, 이제 권한이 생겨서 들어가도 되실겁니다!:0",
+            "자문을 받기 위해 제가 초청한 걸로 말해 뒀거든요:1",
+            "좋네, 그럼 이제 앞으로 가면 되는거야?:2",
+            "아, 여기가 산속인지라 길이 꽤 복잡합니다:3",
+            "임시 캠프까지 길안내를 해드릴테니 저를 따라와 주십쇼:4"
+        });
+        NameData.Add(5200, new string[] { "후배&0", "후배&1","주인공&2","후배&3","후배&4" });
         //---------------------------------------------------------------------------------------------------------------------------------
         //NPC 6 기술자1
         talkData.Add(6000, new string[]{
@@ -319,6 +341,19 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(5000 + 6, portraitArr[5]);
         portraitData.Add(5000 + 7, portraitArr[0]);
 
+        //NPC 5 후배 선택지 1
+        portraitData.Add(5100 + 0, portraitArr[5]);
+        portraitData.Add(5100 + 1, portraitArr[5]);
+        portraitData.Add(5100 + 2, portraitArr[5]);
+
+        //NPC 5 후배 선택지 2
+        portraitData.Add(5200 + 0, portraitArr[5]);
+        portraitData.Add(5200 + 1, portraitArr[5]);
+        portraitData.Add(5200 + 2, portraitArr[5]);
+        portraitData.Add(5200 + 3, portraitArr[5]);
+        portraitData.Add(5200 + 4, portraitArr[5]);
+
+
         //NPC 6 기술자 1
         portraitData.Add(6000 + 0, portraitArr[6]);
 
@@ -499,11 +534,12 @@ public class TalkManager : MonoBehaviour
             // 조건에 따라 UI를 활성화
             if (id == 4000 && portraitIndex == 7)
             {
-                NpcAction.Instance.NpcUnLock0();
+                NpcAction.Instance.NpcUnLock5();
                 //npc 활성화 함수
             }
             else if (id == 5000 && portraitIndex == 7)
             {
+                
                 ShowChoiceUI("따라간다", "집으로 돌아간다", (choice) =>
                 {
                     if (choice == 1)
@@ -512,19 +548,34 @@ public class TalkManager : MonoBehaviour
                         //따라간다
                         
                         Buttons[0].SetActive(true);
+                        NpcAction.Instance.NpcLock5();
+                        NpcAction.Instance.NpcUnLock5_2();
                         if (talkPanel.activeSelf)
                         {
                             GameManager.Instance.NextTalk();
                         }
+                        
+                        
                         // 여기에 첫 번째 선택에 따른 로직 추가
                     }
                     else if (choice == 2)
                     {
                         //안따라감
-                        Changemap.Go_3_Endpart0();
+                        NpcAction.Instance.NpcLock5();
+                        NpcAction.Instance.NpcUnLock5_1();
+                        NpcAction.Instance.NpcDumUnLock();
                         // 여기에 두 번째 선택에 따른 로직 추가
+
                     }
                 });
+            }
+            else if (id == 5100 && portraitIndex == 2)
+            {
+                Changemap.Go_3_Endpart0();
+            }
+            else if (id == 5200 && portraitIndex == 4)
+            {
+                imageFader.TriggerFadeIn();
             }
 
             return portrait;
@@ -577,4 +628,5 @@ public class TalkManager : MonoBehaviour
             onChoiceMade(choice);
         }
     }
+   
 }

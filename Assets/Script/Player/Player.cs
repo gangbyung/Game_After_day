@@ -93,13 +93,12 @@ public class Player : MonoBehaviour
         }
         
         //애니메이션
-        if (Mathf.Abs(rigid.velocity.x) < 0.2)
+        if (Mathf.Abs(rigid.velocity.x) < 1)
         {
             anim.SetBool("iswalking", false);
         }
         else
         {
-            
             anim.SetBool("iswalking", true);
             anim.SetBool("isCrouch", false);
         }

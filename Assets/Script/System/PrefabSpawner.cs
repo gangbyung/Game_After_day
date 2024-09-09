@@ -23,7 +23,7 @@ public class PrefabSpawner : MonoBehaviour
             Instantiate(prefab, spawnPosition, Quaternion.identity);
 
             // 다음 생성할 프리팹의 Y 위치 증가
-            nextSpawnY += 2.5f;
+            nextSpawnY += 5f;
 
             // 다음 생성까지 대기
             yield return new WaitForSeconds(spawnInterval);
