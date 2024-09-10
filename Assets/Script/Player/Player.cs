@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     Vector3 dirVec;
 
-    
+    ImageFader imgfade;
 
     void Awake()
     {
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
             rigid = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             anim = GetComponent<Animator>();
-            
+            imgfade = FindObjectOfType<ImageFader>();
         }
         else
         {
@@ -135,6 +135,10 @@ public class Player : MonoBehaviour
         {
             manager.Action(scanObject);
             
+        }
+        if (collision.CompareTag("Potal"))
+        {
+            imgfade.FadeInImgh();
         }
         
     }
