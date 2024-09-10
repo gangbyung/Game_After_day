@@ -51,6 +51,10 @@ public class NpcAction : MonoBehaviour
 
         Npcs[2].SetActive(true);
     }
+    public void NpcUnLock16()
+    {
+        StartCoroutine(NpcUnLock16cor());
+    }
     IEnumerator NpcUnLock5_1cor()
     {
         Npcs[1].SetActive(true);
@@ -60,5 +64,14 @@ public class NpcAction : MonoBehaviour
         Npcs[1].SetActive(true);
         yield return null;
     }
-    
+    IEnumerator NpcUnLock16cor()
+    {
+        Npcs[0].SetActive(false);
+        Npcs[1].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        Npcs[1].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        Npcs[1].SetActive(true);
+        yield return null;
+    }
 }

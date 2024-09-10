@@ -48,6 +48,9 @@ public class DropManager : MonoBehaviour
             if (targetGameObject != null)
             {
                 targetGameObject.SetActive(false); // 게임 오브젝트 비활성화
+                GameManager.Instance.TalkBugpix();
+
+                NpcAction.Instance.NpcUnLock16();
             }
         }
     }

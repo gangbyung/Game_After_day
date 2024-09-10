@@ -115,6 +115,13 @@ public class GameManager : MonoBehaviour
         Talk(objData.id, objData.isNpc);
         talkPanel.SetActive(isAction);
     }
+    public void TalkBugpix()
+    {
+        talkPanel.SetActive(false);
+        isAction = false;
+        talkIndex = 0;
+        NameIndex = 0;
+    }
 
     public void Talk(int id, bool isNpc) //대사 내보내기
     {

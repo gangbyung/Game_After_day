@@ -229,9 +229,10 @@ public class TalkManager : MonoBehaviour
             "뭐 어쩔 수 없죠. 이런 일을 제멋대로 강요할 수도 없는 노릇이기도 하고요.:1",
             "이 일은 저희끼리라도 어떻게든 해봐야죠, 뭐...:2",
             "(어색한 침묵):3",
-            "크흠... 안녕히 가십쇼:4"
+            "크흠... 안녕히 가십쇼:4",
+            ":5"
         });
-        NameData.Add(13000, new string[] { "후배&0", "후배&1", "후배&2", "후배&3", "후배&4" });
+        NameData.Add(13000, new string[] { "후배&0", "후배&1", "후배&2", "후배&3", "후배&4","&5" });
 
         // NPC 4 후배(1부)
         talkData.Add(14000, new string[]{
@@ -252,9 +253,10 @@ public class TalkManager : MonoBehaviour
             "아 그거요? 일단 현재 상황에 대한 요약 서류를...:2",
             "(테이블 위에 마구잡이로 올려진 서류들을 힐끗 바라본다)음...:3",
             "아하하... 면목이 없네요, 정리할 시간이 없어서:4",
-            "찾는 김에 정리하는 게 좋겠네.:5"
+            "찾는 김에 정리하는 게 좋겠네.:5",
+            ":6",
         });
-        NameData.Add(15000, new string[] { "후배&0", "주인공&1", "후배&2", "주인공&3", "후배&4", "주인공&5" });
+        NameData.Add(15000, new string[] { "후배&0", "주인공&1", "후배&2", "주인공&3", "후배&4", "주인공&5","&6" });
 
         //NPC 4후배
         talkData.Add(16000, new string[] {
@@ -279,7 +281,7 @@ public class TalkManager : MonoBehaviour
             "그럼 탐사팀 분들이 사용하시는 장비 창고까지 안내해 드릴게요.:18",
             "반출 허가는 진작에 받아놨거든요.:19",
         });
-        NameData.Add(16000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후베&4", "주인공&5", "주인공&6", "후배&7", "후배&8", "주인공&9", "후배&10", "주인공&11", "후배&12", "후배&13", "후배&14", "후배&15", "후배&16", "후배&17", "후배&18", "후배&19" });
+        NameData.Add(16000, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4", "주인공&5", "주인공&6", "후배&7", "후배&8", "주인공&9", "후배&10", "주인공&11", "후배&12", "후배&13", "후배&14", "후배&15", "주인공&16", "후배&17", "후배&18", "후배&19" });
 
         //NPC 4 후배
         talkData.Add(17000, new string[] {
@@ -356,11 +358,11 @@ public class TalkManager : MonoBehaviour
         talkData.Add(27000, new string[] {
             "(모니터 전원 키고 버튼 누름):0",
             "'이건...':1",
-            "'... 젠장, 이것도 고장난건가.':1",
-            "'아니, 그냥 단순한 전력 부족이라면...':2"
+            "'... 젠장, 이것도 고장난건가.':2",
+            "'아니, 그냥 단순한 전력 부족이라면...':3"
 
         });
-        NameData.Add(27000, new string[] { "주인공&0", "주인공&1", "주인공&2" });
+        NameData.Add(27000, new string[] { "주인공&0", "주인공&1", "주인공&2","주인공&3" });
 
         talkData.Add(28000, new string[] {
             "'(끊어진 전선을 보면서)이게 문제였던 건가...':0",
@@ -418,36 +420,36 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(3000 + 5, player_portraitArr[0]);
 
         //NPC 4 경비원
-        portraitData.Add(4000 + 0, portraitArr[4]);
+        portraitData.Add(4000 + 0, portraitArr[5]);
         portraitData.Add(4000 + 1, player_portraitArr[0]);
-        portraitData.Add(4000 + 2, portraitArr[4]);
-        portraitData.Add(4000 + 3, portraitArr[4]);
+        portraitData.Add(4000 + 2, portraitArr[5]);
+        portraitData.Add(4000 + 3, portraitArr[5]);
         portraitData.Add(4000 + 4, player_portraitArr[0]);
-        portraitData.Add(4000 + 5, portraitArr[4]);
+        portraitData.Add(4000 + 5, portraitArr[5]);
         portraitData.Add(4000 + 6, player_portraitArr[0]);
         portraitData.Add(4000 + 7, portraitArr[0]);
 
         //NPC 5 후배
-        portraitData.Add(5000 + 0, portraitArr[5]);
-        portraitData.Add(5000 + 1, portraitArr[5]);
+        portraitData.Add(5000 + 0, portraitArr[4]);
+        portraitData.Add(5000 + 1, portraitArr[4]);
         portraitData.Add(5000 + 2, player_portraitArr[0]);
-        portraitData.Add(5000 + 3, portraitArr[5]);
-        portraitData.Add(5000 + 4, portraitArr[5]);
-        portraitData.Add(5000 + 5, portraitArr[5]);
-        portraitData.Add(5000 + 6, portraitArr[5]);
+        portraitData.Add(5000 + 3, portraitArr[4]);
+        portraitData.Add(5000 + 4, portraitArr[4]);
+        portraitData.Add(5000 + 5, portraitArr[4]);
+        portraitData.Add(5000 + 6, portraitArr[4]);
         portraitData.Add(5000 + 7, portraitArr[0]);
 
         //NPC 5 후배 선택지 1
-        portraitData.Add(5100 + 0, portraitArr[5]);
-        portraitData.Add(5100 + 1, portraitArr[5]);
-        portraitData.Add(5100 + 2, portraitArr[5]);
+        portraitData.Add(5100 + 0, portraitArr[4]);
+        portraitData.Add(5100 + 1, portraitArr[4]);
+        portraitData.Add(5100 + 2, portraitArr[4]);
 
         //NPC 5 후배 선택지 2
-        portraitData.Add(5200 + 0, portraitArr[5]);
-        portraitData.Add(5200 + 1, portraitArr[5]);
-        portraitData.Add(5200 + 2, portraitArr[5]);
-        portraitData.Add(5200 + 3, portraitArr[5]);
-        portraitData.Add(5200 + 4, portraitArr[5]);
+        portraitData.Add(5200 + 0, portraitArr[4]);
+        portraitData.Add(5200 + 1, portraitArr[4]);
+        portraitData.Add(5200 + 2, player_portraitArr[0]);
+        portraitData.Add(5200 + 3, portraitArr[4]);
+        portraitData.Add(5200 + 4, portraitArr[4]);
 
 
         //NPC 6 기술자 1
@@ -459,10 +461,10 @@ public class TalkManager : MonoBehaviour
         //NPC 6 기술자 1
         portraitData.Add(8000 + 0, portraitArr[6]);
         portraitData.Add(8000 + 1, portraitArr[6]);
-        portraitData.Add(8000 + 2, portraitArr[6]);
+        portraitData.Add(8000 + 2, player_portraitArr[0]);
         portraitData.Add(8000 + 3, portraitArr[6]);
-        portraitData.Add(8000 + 4, portraitArr[6]);
-        portraitData.Add(8000 + 5, portraitArr[6]);
+        portraitData.Add(8000 + 4, player_portraitArr[0]);
+        portraitData.Add(8000 + 5, player_portraitArr[0]);
         portraitData.Add(8000 + 6, portraitArr[6]);
 
         //NPC 7 기술자 2
@@ -473,26 +475,26 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(9000 + 4, portraitArr[7]);
 
         //NPC 7 기술자 2
-        portraitData.Add(10000 + 0, portraitArr[7]);
+        portraitData.Add(10000 + 0, player_portraitArr[0]);
         portraitData.Add(10000 + 1, portraitArr[7]);
-        portraitData.Add(10000 + 2, portraitArr[7]);
+        portraitData.Add(10000 + 2, player_portraitArr[0]);
         portraitData.Add(10000 + 3, portraitArr[7]);
-        portraitData.Add(10000 + 4, portraitArr[7]);
+        portraitData.Add(10000 + 4, player_portraitArr[0]);
         portraitData.Add(10000 + 5, portraitArr[7]);
         portraitData.Add(10000 + 6, portraitArr[7]);
         portraitData.Add(10000 + 7, portraitArr[7]);
         portraitData.Add(10000 + 8, portraitArr[7]);
-        portraitData.Add(10000 + 9, portraitArr[7]);
+        portraitData.Add(10000 + 9, player_portraitArr[0]);
         portraitData.Add(10000 + 10, portraitArr[7]);
         portraitData.Add(10000 + 11, portraitArr[7]);
 
         //NPC 8 기술자 3
         portraitData.Add(11000 + 0, portraitArr[8]);
-        portraitData.Add(11000 + 1, portraitArr[8]);
-        portraitData.Add(11000 + 2, portraitArr[8]);
+        portraitData.Add(11000 + 1, player_portraitArr[0]);
+        portraitData.Add(11000 + 2, player_portraitArr[0]);
         portraitData.Add(11000 + 3, portraitArr[8]);
         portraitData.Add(11000 + 4, portraitArr[8]);
-        portraitData.Add(11000 + 5, portraitArr[8]);
+        portraitData.Add(11000 + 5, player_portraitArr[0]);
         portraitData.Add(11000 + 6, portraitArr[8]);
         portraitData.Add(11000 + 7, portraitArr[8]);
         portraitData.Add(11000 + 8, portraitArr[8]);
@@ -502,13 +504,13 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(11000 + 12, portraitArr[8]);
         portraitData.Add(11000 + 13, portraitArr[8]);
         portraitData.Add(11000 + 14, portraitArr[8]);
-        portraitData.Add(11000 + 15, portraitArr[8]);
+        portraitData.Add(11000 + 15, player_portraitArr[0]);
 
         //NPC 4 후배
         portraitData.Add(12000 + 0, portraitArr[4]);
-        portraitData.Add(12000 + 1, portraitArr[4]);
+        portraitData.Add(12000 + 1, player_portraitArr[0]);
         portraitData.Add(12000 + 2, portraitArr[4]);
-        portraitData.Add(12000 + 3, portraitArr[4]);
+        portraitData.Add(12000 + 3, player_portraitArr[0]);
         portraitData.Add(12000 + 4, portraitArr[4]);
         portraitData.Add(12000 + 5, portraitArr[4]);
         portraitData.Add(12000 + 6, portraitArr[4]);
@@ -527,41 +529,43 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(13000 + 2, portraitArr[4]);
         portraitData.Add(13000 + 3, portraitArr[4]);
         portraitData.Add(13000 + 4, portraitArr[4]);
+        portraitData.Add(13000 + 5, portraitArr[0]);
 
         //NPC 4 후배 (1부)
         portraitData.Add(14000 + 0, portraitArr[4]);
         portraitData.Add(14000 + 1, portraitArr[4]);
         portraitData.Add(14000 + 2, portraitArr[4]);
-        portraitData.Add(14000 + 3, portraitArr[4]);
+        portraitData.Add(14000 + 3, player_portraitArr[0]);
         portraitData.Add(14000 + 4, portraitArr[4]);
         portraitData.Add(14000 + 5, portraitArr[4]);
 
         //NPC 4 후배
         portraitData.Add(15000 + 0, portraitArr[4]);
-        portraitData.Add(15000 + 1, portraitArr[4]);
+        portraitData.Add(15000 + 1, player_portraitArr[0]);
         portraitData.Add(15000 + 2, portraitArr[4]);
-        portraitData.Add(15000 + 3, portraitArr[4]);
+        portraitData.Add(15000 + 3, player_portraitArr[0]);
         portraitData.Add(15000 + 4, portraitArr[4]);
-        portraitData.Add(15000 + 5, portraitArr[4]);
+        portraitData.Add(15000 + 5, player_portraitArr[0]);
+        portraitData.Add(15000 + 6, portraitArr[0]);
 
         //NPC 4 후배
         portraitData.Add(16000 + 0, portraitArr[4]);
         portraitData.Add(16000 + 1, portraitArr[4]);
-        portraitData.Add(16000 + 2, portraitArr[4]);
+        portraitData.Add(16000 + 2, player_portraitArr[0]);
         portraitData.Add(16000 + 3, portraitArr[4]);
         portraitData.Add(16000 + 4, portraitArr[4]);
-        portraitData.Add(16000 + 5, portraitArr[4]);
-        portraitData.Add(16000 + 6, portraitArr[4]);
+        portraitData.Add(16000 + 5, player_portraitArr[0]);
+        portraitData.Add(16000 + 6, player_portraitArr[0]);
         portraitData.Add(16000 + 7, portraitArr[4]);
         portraitData.Add(16000 + 8, portraitArr[4]);
-        portraitData.Add(16000 + 9, portraitArr[4]);
+        portraitData.Add(16000 + 9, player_portraitArr[0]);
         portraitData.Add(16000 + 10, portraitArr[4]);
-        portraitData.Add(16000 + 11, portraitArr[4]);
+        portraitData.Add(16000 + 11, player_portraitArr[0]);
         portraitData.Add(16000 + 12, portraitArr[4]);
         portraitData.Add(16000 + 13, portraitArr[4]);
         portraitData.Add(16000 + 14, portraitArr[4]);
         portraitData.Add(16000 + 15, portraitArr[4]);
-        portraitData.Add(16000 + 16, portraitArr[4]);
+        portraitData.Add(16000 + 16, player_portraitArr[0]);
         portraitData.Add(16000 + 17, portraitArr[4]);
         portraitData.Add(16000 + 18, portraitArr[4]);
         portraitData.Add(16000 + 19, portraitArr[4]);
@@ -750,6 +754,17 @@ public class TalkManager : MonoBehaviour
                     }
                 });
             }
+            else if (id == 13000 && portraitIndex == 5)
+            {
+                Changemap.Go_3_Endpart0();
+            }
+            else if(id == 15000 && portraitIndex == 6)
+            {
+                
+                MiniGamePanel.SetActive(true);
+                Debug.Log("tlqkf");
+            }
+            
             return portrait; // 값을 반환
         }
         else
