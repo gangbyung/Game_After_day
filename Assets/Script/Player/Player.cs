@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     Vector3 dirVec;
 
     ImageFader imgfade;
-
+    Danger dan;
     void Awake()
     {
         
@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
             anim = GetComponent<Animator>();
             imgfade = FindObjectOfType<ImageFader>();
+            dan = FindObjectOfType<Danger>();
         }
         else
         {
@@ -140,7 +141,11 @@ public class Player : MonoBehaviour
         {
             imgfade.FadeInImgh();
         }
-        
+        if (collision.CompareTag("Danger"))
+        {
+            dan.FadeInOutRoutine();
+        }
+
     }
     void OnTriggerExit2D(Collider2D collision)
     {

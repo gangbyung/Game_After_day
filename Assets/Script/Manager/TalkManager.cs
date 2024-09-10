@@ -306,7 +306,7 @@ public class TalkManager : MonoBehaviour
 
         //NPC 7 기술자2
         talkData.Add(20000, new string[] { "수고가 많으십니다. 잘 다녀오십쇼.:0" });
-        NameData.Add(20000, new string[] { "기술자2:0" });
+        NameData.Add(20000, new string[] { "기술자2&0" });
 
         //NPC 8 기술자3
         talkData.Add(21000, new string[] { "탐사가 주 목적이긴 하지만 가장 중요한 건 건강입니다.:0" });
@@ -315,7 +315,7 @@ public class TalkManager : MonoBehaviour
         //주인공 독백
         talkData.Add(22000, new string[] {
             "'... 을씨년스러운 분위기네,':0",
-            "'무단 침입 방지 시스템은 이전에 미리 꺼둔건가,:1'",
+            "'무단 침입 방지 시스템은 이전에 미리 꺼둔건가,':1",
             "(부숴진 바닥 목격):2",
             "'이건...':3",
             "'..떨어진다면 꽤 위험하겠군.':4"

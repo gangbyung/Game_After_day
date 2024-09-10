@@ -11,5 +11,6 @@ public class SomeOtherScript : MonoBehaviour
         loadingUIManager.SetMapNameForScene("2.part1", "도심");
         loadingUIManager.SetMapNameForScene("4.part3", "기술자 임시캠프");
         loadingUIManager.SetMapNameForScene("5.part4", "기술자 임시캠프");
+        loadingUIManager.SetMapNameForScene("6.part5", "원자력 발전소 앞");
     }
 }

@@ -7,11 +7,11 @@ public class PrefabSpawner : MonoBehaviour
     public float spawnInterval = 10f; // 생성 간격 (초 단위)
     private float nextSpawnY = 0f; // 다음 프리팹의 Y 위치
 
-    void Start()
+    
+    public void SpawnStart()
     {
         StartCoroutine(SpawnPrefabRoutine());
     }
-
     IEnumerator SpawnPrefabRoutine()
     {
         while (true)
