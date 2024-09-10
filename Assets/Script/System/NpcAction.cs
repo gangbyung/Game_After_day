@@ -39,6 +39,18 @@ public class NpcAction : MonoBehaviour
         Npcs[3].SetActive(true);
     }
 
+    public void NpcUnLock13()
+    {
+        Npcs[0].SetActive(false);
+        Npcs[1].SetActive(true);
+    }
+
+    public void NpcUnLock14()
+    {
+        Npcs[0].SetActive(false);
+
+        Npcs[2].SetActive(true);
+    }
     IEnumerator NpcUnLock5_1cor()
     {
         Npcs[1].SetActive(true);
@@ -48,28 +60,5 @@ public class NpcAction : MonoBehaviour
         Npcs[1].SetActive(true);
         yield return null;
     }
-
-    //public void SceneFadein()
-    //{
-    //    StartCoroutine(SceneChagePadein());
-    //}
-
-    //IEnumerator SceneChagePadein()
-    //{
-    //    canvasGroup.gameObject.SetActive(true);
-    //    float elapsedTime = 0f;
-    //    float startAlpha = canvasGroup.alpha;
-
-    //    while (elapsedTime < fadeDuration)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        canvasGroup.alpha = Mathf.Lerp(startAlpha, 255f, elapsedTime / fadeDuration);
-    //        yield return null;
-    //    }
-    //    canvasGroup.alpha = 255f;
-    //    Destroy(canvasGroup);
-
-    //    canvasGroup.gameObject.SetActive(false);
-    //    Changemap.Go_4_part3();
-    //}
+    
 }

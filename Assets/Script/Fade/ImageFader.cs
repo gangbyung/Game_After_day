@@ -7,7 +7,7 @@ public class ImageFader : MonoBehaviour
     public Image targetImage; // 페이드인할 대상 이미지
     public float fadeDuration = 1.0f; // 페이드인 시간 (초)
     public float delayBeforeDestroy = 2.0f; // 이미지가 삭제되기 전 대기 시간 (초)
-
+    public GameObject talkpanel;
     private void Start()
     {
         // 이미지 초기 상태를 비활성화
@@ -40,5 +40,11 @@ public class ImageFader : MonoBehaviour
         // 지정한 시간 후 이미지 삭제
         yield return new WaitForSeconds(delayBeforeDestroy);
         Destroy(targetImage.gameObject);
+
+        Changemap.Go_4_part3();
+        if (talkpanel.activeSelf)
+        {
+            GameManager.Instance.NextTalk();
+        }
     }
 }

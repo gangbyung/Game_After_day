@@ -23,7 +23,7 @@ public class TalkManager : MonoBehaviour
     Dictionary<int, string[]> talkData;
     Dictionary<int, string[]> NameData;
     Dictionary<int, Sprite> portraitData;
-        
+
     public Sprite[] portraitArr;
     public Sprite[] player_portraitArr;
 
@@ -52,9 +52,10 @@ public class TalkManager : MonoBehaviour
     }
     void Start()
     {
+        imageFader = FindObjectOfType<ImageFader>();
         Chmap = GetComponent<Changemap>();
         //NpcAction a = FindObjectOfType<NpcAction>();
-        
+
     }
     void GenerateData()
     {
@@ -118,7 +119,7 @@ public class TalkManager : MonoBehaviour
             "조심히 들어가십쇼:1",
             ":2"
         });
-        NameData.Add(5100, new string[] { "후배&0", "후배&1","&2" });
+        NameData.Add(5100, new string[] { "후배&0", "후배&1", "&2" });
 
         //NPC 5 후배 선택지 2
         talkData.Add(5200, new string[] {
@@ -128,7 +129,7 @@ public class TalkManager : MonoBehaviour
             "아, 여기가 산속인지라 길이 꽤 복잡합니다:3",
             "임시 캠프까지 길안내를 해드릴테니 저를 따라와 주십쇼:4"
         });
-        NameData.Add(5200, new string[] { "후배&0", "후배&1","주인공&2","후배&3","후배&4" });
+        NameData.Add(5200, new string[] { "후배&0", "후배&1", "주인공&2", "후배&3", "후배&4" });
         //---------------------------------------------------------------------------------------------------------------------------------
         //NPC 6 기술자1
         talkData.Add(6000, new string[]{
@@ -136,9 +137,9 @@ public class TalkManager : MonoBehaviour
         });
         NameData.Add(6000, new string[] { "기술자1&0" });
 
-        //NPC 4 후배 (아직은/ 대강 다 둘러본 것 같아)
+        //NPC 4 후배 (아직은)
         talkData.Add(7000, new string[] {
-            "다 둘러보셨나요?:0"
+            "다 둘러보셨나요?:0",
         });
         NameData.Add(7000, new string[] { "후배&0" });
 
@@ -152,7 +153,7 @@ public class TalkManager : MonoBehaviour
             " 저 여기서 일하는 사람 아닌데...:4",
             "(대답을 듣지 못하고 책상 위로 쓰러진다)..zzZ:5"
         });
-        NameData.Add(8000, new string[] { "기술자1&0", "기술자1&1", "주인공&2", "기술자1&3", "주인공&4", "주인공&5", "기술자&6" });
+        NameData.Add(8000, new string[] { "기술자1&0", "기술자1&1", "주인공&2", "기술자1&3", "주인공&4", "주인공&5", "기술자1&6" });
 
         // NPC 7 기술자2
         talkData.Add(9000, new string[] {
@@ -179,7 +180,7 @@ public class TalkManager : MonoBehaviour
             "장치가 있으면 뭐합니까! 대부분은 부식되고 고장나서 작동해봤자 제대로 막지도 못해요!:10",
             "아무튼 그나마 멀쩡한 장치라도 찾아내서 이 피해를 최소화 시키는 것이 저희의 목표입니다.:11"
         });
-        NameData.Add(10000, new string[] { "주인공&0", "기술자2&1", "주인공&2", "기술자2&3", "주인공&4", "기술자2&5", "기술자2&6", "기술자2&7", "기술자2&8", "주인공&9", "기술자2&10", "기술자11&11" });
+        NameData.Add(10000, new string[] { "주인공&0", "기술자2&1", "주인공&2", "기술자2&3", "주인공&4", "기술자2&5", "기술자2&6", "기술자2&7", "기술자2&8", "주인공&9", "기술자2&10", "기술자1&11" });
 
         //NPC 8 기술자3
         talkData.Add(11000, new string[] {
@@ -202,14 +203,25 @@ public class TalkManager : MonoBehaviour
         });
         NameData.Add(11000, new string[] { "기술자3&0", "주인공&1", "주인공&2", "기술자&3", "기술자&4", "주인공&5", "기술자3&6", "기술자3&7", "기술자3&8", "기술자3&9", "기술자3&10", "기술자3&11", "기술자3&12", "기술자3&13", "기술자3&14", "주인공&15" });
 
-        //NPC 4 후배 다시 말 걸 때, 엄 선택진데 어떻게 해야할 지 몰라서 그냥 이렇게 했어 너가 알아서 수정해줘.
+        //NPC 4 후배 다둘러봤어
         talkData.Add(12000, new string[]
         {
             "다 둘러보셨나요?:0",
-            "아직은:1",
-            "대강 다 둘러본 것 같아:2"
+            "대강 다 둘러본것같아:1",
+            "그거 좋네요! 어떠셨나요?:2",
+            "네가 왜 굳이 나를 데려왔는지에 대한 이유를 대충 알 것 같았어.:3",
+            "하하..:4",
+            "... 네, 선배님이 생각하시는 그게 맞을겁니다.:5",
+            "아까 보셔서 아시겠지만은, 여기 상황은 선배님이 생각하시는 대로 개판입니다.:6",
+            "수리에 필요한 최소치에 비하면 턱없이 부족한 인력, 자원, 그러면서도 발전소의 상태는 시간이 지날수록 나빠지기만 하죠.:7",
+            "어쩌면 폭발해 버릴지도 몰라요. 방호벽도 제대로 지어지지 않았으니 잘못하면 안에 있는 방사능 물질들까지 도심에 새어나가면... 이 근방은 말 그대로 초토화가 되겠죠.:8",
+            "폐허가 된 서울을 재건하는데도 벅찬 정부가 이곳에 사는 10만명의 시민들을 어떻게든 챙길 수 있을 지 조차 의문이죠.:9",
+            "그런데 발전소의 폭발은 코 앞까지 다가왔고... 어떻게든 막아내기에는 모든것들이 부족합니다.:10",
+            "이런 부탁을 드리게 되어 죄송하지만,:11",
+            "선배님의 도움이 필요합니다...:12",
+            ":13"
         });
-        NameData.Add(12000, new string[] { "후배&0", "주인공&1","주인공&2"});
+        NameData.Add(12000, new string[] { "후배&0", "주인공&1", "후배&2", "주인공&3", "후배&4", "후배&5", "후배&6", "후배&7", "후배&8", "후배&9", "후배&10", "후배&11", "후배&12","&13" });
 
         // NPC 4 후배(2부 루트)
         talkData.Add(13000, new string[] {
@@ -297,6 +309,90 @@ public class TalkManager : MonoBehaviour
         //NPC 8 기술자3
         talkData.Add(21000, new string[] { "탐사가 주 목적이긴 하지만 가장 중요한 건 건강입니다.:0" });
         NameData.Add(21000, new string[] { "기술자3&0" });
+
+        //주인공 독백
+        talkData.Add(22000, new string[] {
+            "'... 을씨년스러운 분위기네,':0",
+            "'무단 침입 방지 시스템은 이전에 미리 꺼둔건가,:1'",
+            "(부숴진 바닥 목격):2",
+            "'이건...':3",
+            "'..떨어진다면 꽤 위험하겠군.':4"
+        });
+        NameData.Add(22000, new string[] { "주인공&0", "주인공&1", "주인공&2", "주인공&3", "주인공&4" });
+
+        //2 스태이지 독백
+        talkData.Add(23000, new string[] {
+            "'... 열쇠가 저곳에 떨어져 있었나':0",
+            "'안쪽을 확인하기 위해서는 열쇠를 가져와야 해.':1"
+        });
+        NameData.Add(23000, new string[] { "주인공&0", "주인공&1" });
+
+        //스핃 ㅡ런
+        talkData.Add(24000, new string[] {
+            "(새어나온 방사능 목격):0",
+            "'...!':1",
+            "'방벽이, 녹아내린건가?':2"
+        });
+        NameData.Add(24000, new string[] { "주인공&0", "주인공&1", "주인공&2" });
+
+
+        talkData.Add(25000, new string[] {
+            "'젠장, 아무래도 1층은 글렀군...':0",
+            "'서둘러서 상황실로 가야겠어...!':1"
+        });
+        NameData.Add(25000, new string[] { "주인공&0", "주인공&1" });
+
+        //상황실 도착
+        talkData.Add(26000, new string[] {
+            "(모조리 빨간불이 들어온 버튼들을 바라봄):0",
+            "'...예상보다 심각해.':1",
+            "'이 정도라면... 아냐, 지금 돌아가서 알린다 하더라도 늦어.':2",
+            "'애초에 해결책 조차 찾기 어려워 내가 파견된...':3",
+            //여기에 건물이 흔들리는 소리
+            "'..!':4"//건물이 흔들림. 밀풍선에 !
+        });
+        NameData.Add(26000, new string[] { "주인공&0", "주인공&1", "주인공&2", "주인공&3", "주인공&4" });
+
+        talkData.Add(27000, new string[] {
+            "(모니터 전원 키고 버튼 누름):0",
+            "'이건...':1",
+            "'... 젠장, 이것도 고장난건가.':1",
+            "'아니, 그냥 단순한 전력 부족이라면...':2"
+
+        });
+        NameData.Add(27000, new string[] { "주인공&0", "주인공&1", "주인공&2" });
+
+        talkData.Add(28000, new string[] {
+            "'(끊어진 전선을 보면서)이게 문제였던 건가...':0",
+            "'일단 이걸 연결시키면 어떻게든 작동이 될 지도 몰라.':1",
+            "'...!':2",
+            "'이거다!':3"
+        });
+        NameData.Add(28000, new string[] { "주인공&0", "주인공&1", "주인공&2", "주인공&3" });
+
+        talkData.Add(29000, new string[] {
+            "'차폐막이 내려와야 하는데.':0",
+            "'버튼이 작동하지 않네.':1",
+            "'... 망가진 건가, 어쩐지... 싸구려 티가 약간 나더라니만...':2",
+            "'(아까 연결한 줄을 살펴보며... 전력은 확실하게 연결되어 있어. 신호만 보낸다면 바로 작동될 터,':3",
+            "'그렇다면... 통제실이야..!':4"
+        });
+
+        NameData.Add(29000, new string[] { "주인공&0", "주인공&1", "주인공&2", "주인공&3", "주인공&4" });
+
+        talkData.Add(30000, new string[] {
+            "'작동시키는 순간, 나는 꼼짝없이 이곳에 갇혀 온 몸이 녹아내리겠지. 체렌코프 현상으로 몸이 형광색으로 빛나는 건 덤일테고':0",
+            "'... 나는 이곳에서 죽게 될테지.':1"
+            });
+
+        NameData.Add(30000, new string[] { "주인공&0", "주인공&1" });
+
+        talkData.Add(31000, new string[] {
+            "'내 기억이 확실하다면 신호 전송에 쓰는 버튼은 맨 왼쪽에 있는 작은 레버다.':0",
+            "'이걸 당기면 예비의 예비의 예비의... 장치가 작동되면서 이전에 설치했었던 구식 방호벽이 올라와 이 시설 밖에 영향이 가지 않게 하겠지.':1",
+            "'... 고민할 필요는 없다':2"
+        });
+        NameData.Add(31000, new string[] { "주인공&0", "주인공&1", "주인공&2" });
         //NPC 1 선캡아줌마
         portraitData.Add(1000 + 0, portraitArr[1]);
         portraitData.Add(1000 + 1, portraitArr[1]);
@@ -412,6 +508,17 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(12000 + 0, portraitArr[4]);
         portraitData.Add(12000 + 1, portraitArr[4]);
         portraitData.Add(12000 + 2, portraitArr[4]);
+        portraitData.Add(12000 + 3, portraitArr[4]);
+        portraitData.Add(12000 + 4, portraitArr[4]);
+        portraitData.Add(12000 + 5, portraitArr[4]);
+        portraitData.Add(12000 + 6, portraitArr[4]);
+        portraitData.Add(12000 + 7, portraitArr[4]);
+        portraitData.Add(12000 + 8, portraitArr[4]);
+        portraitData.Add(12000 + 9, portraitArr[4]);
+        portraitData.Add(12000 + 10, portraitArr[4]);
+        portraitData.Add(12000 + 11, portraitArr[4]);
+        portraitData.Add(12000 + 12, portraitArr[4]);
+        portraitData.Add(12000 + 13, portraitArr[0]);
 
 
         //NPC 4 후배 
@@ -476,6 +583,60 @@ public class TalkManager : MonoBehaviour
         //NPC 8 기술자 3
         portraitData.Add(21000 + 0, portraitArr[8]);
 
+        //주인공 독백
+        portraitData.Add(22000 + 0, player_portraitArr[0]);
+        portraitData.Add(22000 + 1, player_portraitArr[0]);
+        portraitData.Add(22000 + 2, player_portraitArr[0]);
+        portraitData.Add(22000 + 3, player_portraitArr[0]);
+        portraitData.Add(22000 + 4, player_portraitArr[0]);
+
+        //2스태이지 독백
+        portraitData.Add(23000 + 0, player_portraitArr[0]);
+        portraitData.Add(23000 + 1, player_portraitArr[0]);
+
+        //스피드런
+        portraitData.Add(24000 + 0, player_portraitArr[0]);
+        portraitData.Add(24000 + 1, player_portraitArr[0]);
+        portraitData.Add(24000 + 2, player_portraitArr[0]);
+        //스피드런2
+        portraitData.Add(25000 + 0, player_portraitArr[0]);
+        portraitData.Add(25000 + 1, player_portraitArr[0]);
+
+        //상황실 도착
+        portraitData.Add(26000 + 0, player_portraitArr[0]);
+        portraitData.Add(26000 + 1, player_portraitArr[0]);
+        portraitData.Add(26000 + 2, player_portraitArr[0]);
+        portraitData.Add(26000 + 3, player_portraitArr[0]);
+        portraitData.Add(26000 + 4, player_portraitArr[0]);
+
+        //상호작용
+        portraitData.Add(27000 + 0, player_portraitArr[0]);
+        portraitData.Add(27000 + 1, player_portraitArr[0]);
+        portraitData.Add(27000 + 2, player_portraitArr[0]);
+        portraitData.Add(27000 + 3, player_portraitArr[0]);
+
+        //전선문제독백
+        portraitData.Add(28000 + 0, player_portraitArr[0]);
+        portraitData.Add(28000 + 1, player_portraitArr[0]);
+        portraitData.Add(28000 + 2, player_portraitArr[0]);
+        portraitData.Add(28000 + 3, player_portraitArr[0]);
+
+        //차폐막독백
+        portraitData.Add(29000 + 0, player_portraitArr[0]);
+        portraitData.Add(29000 + 1, player_portraitArr[0]);
+        portraitData.Add(29000 + 2, player_portraitArr[0]);
+        portraitData.Add(29000 + 3, player_portraitArr[0]);
+        portraitData.Add(29000 + 4, player_portraitArr[0]);
+
+        //나주겅
+        portraitData.Add(30000 + 0, player_portraitArr[0]);
+        portraitData.Add(30000 + 1, player_portraitArr[0]);
+
+        //진짜 죽음 엔딩
+        portraitData.Add(31000 + 0, player_portraitArr[0]);
+        portraitData.Add(31000 + 1, player_portraitArr[0]);
+        portraitData.Add(31000 + 2, player_portraitArr[0]);
+
     }
 
     public string GetTalk(int id, int talkIndex)
@@ -535,18 +696,13 @@ public class TalkManager : MonoBehaviour
             if (id == 4000 && portraitIndex == 7)
             {
                 NpcAction.Instance.NpcUnLock5();
-                //npc 활성화 함수
             }
             else if (id == 5000 && portraitIndex == 7)
             {
-                
                 ShowChoiceUI("따라간다", "집으로 돌아간다", (choice) =>
                 {
                     if (choice == 1)
                     {
-                        //MiniGamePanel.SetActive(true);
-                        //따라간다
-                        
                         Buttons[0].SetActive(true);
                         NpcAction.Instance.NpcLock5();
                         NpcAction.Instance.NpcUnLock5_2();
@@ -554,18 +710,12 @@ public class TalkManager : MonoBehaviour
                         {
                             GameManager.Instance.NextTalk();
                         }
-                        
-                        
-                        // 여기에 첫 번째 선택에 따른 로직 추가
                     }
                     else if (choice == 2)
                     {
-                        //안따라감
                         NpcAction.Instance.NpcLock5();
                         NpcAction.Instance.NpcUnLock5_1();
                         NpcAction.Instance.NpcDumUnLock();
-                        // 여기에 두 번째 선택에 따른 로직 추가
-
                     }
                 });
             }
@@ -577,8 +727,30 @@ public class TalkManager : MonoBehaviour
             {
                 imageFader.TriggerFadeIn();
             }
+            else if (id == 12000 && portraitIndex == 13)
+            {
+                ShowChoiceUI("까짓거 해보지", "...미안, 힘들것같다", (choice) =>
+                {
+                    if (choice == 1)
+                    {
+                        NpcAction.Instance.NpcUnLock14();
+                        if (talkPanel.activeSelf)
+                        {
+                            GameManager.Instance.NextTalk();
+                        }
+                    }
+                    else if (choice == 2)
+                    {
+                        NpcAction.Instance.NpcUnLock13();
 
-            return portrait;
+                        if (talkPanel.activeSelf)
+                        {
+                            GameManager.Instance.NextTalk();
+                        }
+                    }
+                });
+            }
+            return portrait; // 값을 반환
         }
         else
         {
@@ -628,5 +800,5 @@ public class TalkManager : MonoBehaviour
             onChoiceMade(choice);
         }
     }
-   
+
 }
