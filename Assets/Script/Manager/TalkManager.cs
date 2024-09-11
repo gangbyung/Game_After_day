@@ -29,11 +29,11 @@ public class TalkManager : MonoBehaviour
 
     public GameObject[] Buttons;
 
-
     public static TalkManager Instance { get; private set; }
 
     Changemap Chmap;
-    public ImageFader imageFader;
+    ImageFader imageFader;
+    PrefabSpawner prefabSpawner;
     void Awake()
     {
         if (Instance == null)
@@ -54,6 +54,7 @@ public class TalkManager : MonoBehaviour
     {
         imageFader = FindObjectOfType<ImageFader>();
         Chmap = GetComponent<Changemap>();
+        prefabSpawner = GetComponent<PrefabSpawner>();
         //NpcAction a = FindObjectOfType<NpcAction>();
 
     }
@@ -324,8 +325,8 @@ public class TalkManager : MonoBehaviour
 
         //2 스태이지 독백
         talkData.Add(23000, new string[] {
-            "'... 열쇠가 저곳에 떨어져 있었나':0",
-            "'안쪽을 확인하기 위해서는 열쇠를 가져와야 해.':1"
+            "'...열쇠는 어디에있지?':0",
+            "'열쇠를 찾으러 올라가야겠어.':1"
         });
         NameData.Add(23000, new string[] { "주인공&0", "주인공&1" });
 
@@ -337,6 +338,12 @@ public class TalkManager : MonoBehaviour
         });
         NameData.Add(24000, new string[] { "주인공&0", "주인공&1", "주인공&2" });
 
+        talkData.Add(24100, new string[] {
+            "열쇠를 찾았다.!:0",
+            "이제 내부로 들어갈 수 있겠어:1",
+            
+        });
+        NameData.Add(24000, new string[] { "주인공&0", "주인공&1"});
 
         talkData.Add(25000, new string[] {
             "'젠장, 아무래도 1층은 글렀군...':0",
@@ -602,6 +609,9 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(24000 + 0, player_portraitArr[0]);
         portraitData.Add(24000 + 1, player_portraitArr[0]);
         portraitData.Add(24000 + 2, player_portraitArr[0]);
+
+        portraitData.Add(24100 + 0, player_portraitArr[0]);
+        portraitData.Add(24100 + 1, player_portraitArr[0]);
         //스피드런2
         portraitData.Add(25000 + 0, player_portraitArr[0]);
         portraitData.Add(25000 + 1, player_portraitArr[0]);
@@ -763,6 +773,10 @@ public class TalkManager : MonoBehaviour
                 
                 MiniGamePanel.SetActive(true);
                 Debug.Log("tlqkf");
+            }
+            else if (id == 24000 && portraitIndex == 2)
+            {
+                NpcAction.Instance.RadiUnLock();
             }
             
             return portrait; // 값을 반환

@@ -51,6 +51,10 @@ public class NpcAction : MonoBehaviour
 
         Npcs[2].SetActive(true);
     }
+    public void RadiUnLock()
+    {
+        Npcs[0].SetActive(true);
+    }
     public void NpcUnLock16()
     {
         StartCoroutine(NpcUnLock16cor());

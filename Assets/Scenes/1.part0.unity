@@ -553,7 +553,6 @@ MonoBehaviour:
   - {fileID: -1978723862, guid: 3ac21ebb957054e4ca3c81eaf100ba84, type: 3}
   Buttons:
   - {fileID: 1782318824164335711}
-  imageFader: {fileID: 1469924719}
 --- !u!4 &302544559
 Transform:
   m_ObjectHideFlags: 0
@@ -949,7 +948,7 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 1024
-  checkDistance: 2
+  checkDistance: 3
   checkWidth: 1.5
   rayColorAbove: {r: 0, g: 1, b: 0, a: 1}
   rayColorBelow: {r: 1, g: 0, b: 0, a: 1}
