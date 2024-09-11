@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/6.part5.unity
     guid: 1264108100ccbf247a7929a6ee92f081
   - enabled: 1
+    path: Assets/Scenes/7.part6.unity
+    guid: 4b93107e083d3f44e8ce2f5497501039
+  - enabled: 1
     path: Assets/Scenes/98.LoadingScene.unity
     guid: 0cf78f0f2e2782446a473304e4d865c3
   - enabled: 1

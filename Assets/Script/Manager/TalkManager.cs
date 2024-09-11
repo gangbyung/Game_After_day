@@ -325,7 +325,7 @@ public class TalkManager : MonoBehaviour
 
         //2 스태이지 독백
         talkData.Add(23000, new string[] {
-            "'...열쇠는 어디에있지?':0",
+            "'...열쇠는 어디에있지? 열쇠가 있어야 상황실에 갈 수 있는데..':0",
             "'열쇠를 찾으러 올라가야겠어.':1"
         });
         NameData.Add(23000, new string[] { "주인공&0", "주인공&1" });
@@ -340,10 +340,10 @@ public class TalkManager : MonoBehaviour
 
         talkData.Add(24100, new string[] {
             "열쇠를 찾았다.!:0",
-            "이제 내부로 들어갈 수 있겠어:1",
+            "이제 상황실로 들어갈 수 있겠어..빨리 올라가자!:1",
             
         });
-        NameData.Add(24000, new string[] { "주인공&0", "주인공&1"});
+        NameData.Add(24100, new string[] { "주인공&0", "주인공&1"});
 
         talkData.Add(25000, new string[] {
             "'젠장, 아무래도 1층은 글렀군...':0",
@@ -372,7 +372,7 @@ public class TalkManager : MonoBehaviour
         NameData.Add(27000, new string[] { "주인공&0", "주인공&1", "주인공&2","주인공&3" });
 
         talkData.Add(28000, new string[] {
-            "'(끊어진 전선을 보면서)이게 문제였던 건가...':0",
+            "'(끊어진 전선을 보면서) 이게 문제였던 건가...':0",
             "'일단 이걸 연결시키면 어떻게든 작동이 될 지도 몰라.':1",
             "'...!':2",
             "'이거다!':3"
@@ -399,9 +399,10 @@ public class TalkManager : MonoBehaviour
         talkData.Add(31000, new string[] {
             "'내 기억이 확실하다면 신호 전송에 쓰는 버튼은 맨 왼쪽에 있는 작은 레버다.':0",
             "'이걸 당기면 예비의 예비의 예비의... 장치가 작동되면서 이전에 설치했었던 구식 방호벽이 올라와 이 시설 밖에 영향이 가지 않게 하겠지.':1",
-            "'... 고민할 필요는 없다':2"
+            "'... 고민할 필요는 없다':2",
+            "철컥..!:3"
         });
-        NameData.Add(31000, new string[] { "주인공&0", "주인공&1", "주인공&2" });
+        NameData.Add(31000, new string[] { "주인공&0", "주인공&1", "주인공&2" ,"&3"});
         //NPC 1 선캡아줌마
         portraitData.Add(1000 + 0, portraitArr[1]);
         portraitData.Add(1000 + 1, portraitArr[1]);
@@ -650,6 +651,7 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(31000 + 0, player_portraitArr[0]);
         portraitData.Add(31000 + 1, player_portraitArr[0]);
         portraitData.Add(31000 + 2, player_portraitArr[0]);
+        portraitData.Add(31000 + 3, portraitArr[0]);
 
     }
 
@@ -777,6 +779,10 @@ public class TalkManager : MonoBehaviour
             else if (id == 24000 && portraitIndex == 2)
             {
                 NpcAction.Instance.RadiUnLock();
+            }
+            else if (id == 31000 && portraitIndex == 3)
+            {
+                Changemap.Go_99_EndGame();
             }
             
             return portrait; // 값을 반환

@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ee2e20d5b582747b1248fe1a49f747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transferMapName: 6.part5
+  transferMapName: 2.part1
 --- !u!1 &342602079
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   manager: {fileID: 728815041}
   currentMapName: 
   runSpeed: 7
-  walkSpeed: 4
+  walkSpeed: 100
   currentSpeed: 0
   jumpPower: 15
   platformLayer:
@@ -3282,7 +3282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &935243978
 SpriteRenderer:
   m_ObjectHideFlags: 0
