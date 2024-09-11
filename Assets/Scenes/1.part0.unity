@@ -943,9 +943,16 @@ MonoBehaviour:
   manager: {fileID: 728815041}
   currentMapName: 
   runSpeed: 7
-  walkSpeed: 100
+  walkSpeed: 4
   currentSpeed: 0
   jumpPower: 15
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  checkDistance: 2
+  checkWidth: 1.5
+  rayColorAbove: {r: 0, g: 1, b: 0, a: 1}
+  rayColorBelow: {r: 1, g: 0, b: 0, a: 1}
 --- !u!95 &362873063
 Animator:
   serializedVersion: 5
@@ -992,7 +999,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &362873066
 SpriteRenderer:
@@ -1106,7 +1113,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.023970127, y: 0.13741899}
+  m_Offset: {x: 0.023970127, y: 0.06035787}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1117,7 +1124,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47565174, y: 1.005162}
+  m_Size: {x: 0.47565174, y: 0.85103977}
   m_EdgeRadius: 0
 --- !u!114 &362873070
 MonoBehaviour:

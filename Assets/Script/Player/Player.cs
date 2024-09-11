@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +22,12 @@ public class Player : MonoBehaviour
     public float walkSpeed;
     public float currentSpeed;
     public float jumpPower;
-    
 
+    public LayerMask platformLayer; // 플랫폼이 있는 레이어를 지정합니다.
+    public float checkDistance = 0.1f; // 체크할 거리
+    public float checkWidth = 0.5f; // 레이캐스트 발사 간격
+    public Color rayColorAbove = Color.green; // 위쪽 레이 색상
+    public Color rayColorBelow = Color.red; // 아래쪽 레이 색상
     //기능들 넣어주기 리지드바디(물리), 스프라이트렌더러(플레이어 회전),애니메이터(플레이어 움직일때 모습)
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -63,7 +68,36 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        
+        Vector2 position = transform.position;
+
+        // 발 아래에서의 레이캐스트
+        RaycastHit2D belowHit = Physics2D.Raycast(position, Vector2.down, checkDistance, platformLayer);
+
+        // 발 아래에서 레이 시각화
+        Debug.DrawRay(position, Vector2.down * checkDistance, rayColorBelow);
+
+        // 발 아래에 플랫폼이 있으면 isTrigger 비활성화
+        if (belowHit.collider != null)
+        {
+            belowHit.collider.isTrigger = false;
+        }
+
+        // 발 위쪽 방향으로 여러 개의 레이캐스트 발사
+        for (float x = -checkWidth; x <= checkWidth; x += checkWidth)
+        {
+            Vector2 origin = position + new Vector2(x, 0);
+            RaycastHit2D aboveHit = Physics2D.Raycast(origin, Vector2.up, checkDistance, platformLayer);
+
+            // 발 위에서 레이 시각화
+            Debug.DrawRay(origin, Vector2.up * checkDistance, rayColorAbove);
+
+            // 발 위에 플랫폼이 있으면 isTrigger 활성화
+            if (aboveHit.collider != null)
+            {
+                aboveHit.collider.isTrigger = true;
+            }
+        }
+
         if (!Input.GetButtonUp("Horizontal") && (!Input.GetKey(KeyCode.Space))) //스태미나 회복
         {
             
@@ -79,8 +113,8 @@ public class Player : MonoBehaviour
 
                 anim.SetBool("isJumping", true);
                 anim.SetBool("iswalking", false);
-                
 
+                
                 DeJumpStamina(Hud.Instance.jumpStamina); //점프시 스태미나 감소
             }
         }
@@ -145,6 +179,7 @@ public class Player : MonoBehaviour
         {
             dan.FadeInOutRoutine();
         }
+        
 
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -154,6 +189,7 @@ public class Player : MonoBehaviour
             scanObject = null;
         }
     }
+    
     void FixedUpdate()
     {
         Movement();
