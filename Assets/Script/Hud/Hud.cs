@@ -48,6 +48,7 @@ public class Hud : MonoBehaviour
     public Button ResumeButton; //이어하기 버튼 변수
     public Button PauseButton; //일시정지 버튼 변수
     public Button EscResumeButton; //esc를 누를때 나오는 퍼즈 버튼
+    public Button SaveButton;
 
     public bool isDead;
 
@@ -105,6 +106,7 @@ public class Hud : MonoBehaviour
         PauseButton.onClick.AddListener(OnPauseButtonClicked);
         ResumeButton.onClick.AddListener(OnResumeButtonCliked);
         EscResumeButton.onClick.AddListener(OnResumeButtonCliked);
+        SaveButton.onClick.AddListener(SaveClik);
         //인벤토리 끄기
         InventoryPanel.SetActive(activeInventory);
     }
@@ -219,6 +221,10 @@ public class Hud : MonoBehaviour
             isDead = true;
         }
         
+    }
+    public void SaveClik()
+    {
+        DataManager.Instance.GameSave();
     }
     
 }

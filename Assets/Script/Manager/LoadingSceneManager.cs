@@ -18,6 +18,18 @@ public class LoadingSceneManager : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
+        if (sceneName == "1.part0")
+            DataManager.Instance.map = 1;
+        if(sceneName == "2.part1")
+            DataManager.Instance.map = 2;
+        if (sceneName == "4.part3")
+            DataManager.Instance.map = 3;
+        if(sceneName == "5.part4")
+            DataManager.Instance.map = 4;
+        if(sceneName == "6.part5")
+            DataManager.Instance.map = 5;
+        if(sceneName == "7.part6")
+            DataManager.Instance.map = 6;
         SceneManager.LoadScene("98.LoadingScene");
     }
 

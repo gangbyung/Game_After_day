@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject MainCamera;
     public GameObject GameObj;
 
+
     public string[] scenesToDestroy;
 
     private static GameManager _instance;
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
     {
         if (scanObj == null)
         {
-            Debug.LogError("scanObj is null!");
+            Debug.LogError("null!");
             return;
         }
 
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour
 
         if (objData == null)
         {
-            Debug.LogError("ObjectData component is missing on the scanned object!");
+            Debug.LogError("missing");
             return;
         }
 
@@ -127,15 +128,10 @@ public class GameManager : MonoBehaviour
     {
         if (talkManager != null)
         {
-            // talkManager 인스턴스가 null이 아니면, 해당 메서드를 호출합니다.
+            // talkManager 인스턴스가 null이 아니면, 해당 메서드를 호출
             string talkText = talkManager.GetTalk(id, 0);
             
         }
-        else
-        {
-            Debug.LogError("TalkManager 인스턴스가 null입니다.");
-        }
-
         string talkData = talkManager.GetTalk(id, talkIndex);
         
         string NameData = talkManager.GetName(id, NameIndex);
@@ -149,19 +145,22 @@ public class GameManager : MonoBehaviour
         }
         if(isNpc)
         {
-            talkText.text = talkData.Split(':')[0];
+            //텍스트 분할
+            talkText.text = talkData.Split(':')[0]; 
             NameText.text = NameData.Split('&')[0];
-
+            //이미지 적용
             portraiImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
             portraiImg.color = new Color(1, 1, 1, 1);
         }
         else
         {
+            //텍스트에 저장해둔 데이터 적용
             talkText.text = talkData;
             NameText.text = NameData;
 
             portraiImg.color = new Color(1, 1, 1, 0);
         }
+        //다음대사 출력
         isAction = true;
         talkIndex++;
         NameIndex++;
@@ -225,4 +224,5 @@ public class GameManager : MonoBehaviour
         if (TalkManager != null) TalkManager.SetActive(true);
         if (MainCamera != null) MainCamera.SetActive(true);
     }
+    
 }

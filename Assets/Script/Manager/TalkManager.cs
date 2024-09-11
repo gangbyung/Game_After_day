@@ -136,7 +136,7 @@ public class TalkManager : MonoBehaviour
         talkData.Add(6000, new string[]{
             "도착이에요. 좀 둘러보시다가 가세요:0"
         });
-        NameData.Add(6000, new string[] { "기술자1&0" });
+        NameData.Add(6000, new string[] { "후배&0" });
 
         //NPC 4 후배 (아직은)
         talkData.Add(7000, new string[] {
@@ -461,7 +461,7 @@ public class TalkManager : MonoBehaviour
 
 
         //NPC 6 기술자 1
-        portraitData.Add(6000 + 0, portraitArr[6]);
+        portraitData.Add(6000 + 0, portraitArr[4]);
 
         //NPC 4 후배
         portraitData.Add(7000 + 0, portraitArr[4]);
@@ -666,13 +666,13 @@ public class TalkManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"키 '{id}'에 대한 유효하지 않은 대화 인덱스: {talkIndex}");
+                Debug.LogWarning("{id} {talkIndex}");
                 return null;
             }
         }
         else
         {
-            Debug.LogWarning($"키 '{id}'가 talkData에 존재하지 않습니다.");
+            Debug.LogWarning("'{id}'talkData에 존재하지 않음");
             return null;
         }
     }

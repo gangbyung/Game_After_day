@@ -21,6 +21,7 @@ public class NpcAction : MonoBehaviour
         {
             Destroy(gameObject); // 이미 인스턴스가 존재하면 이 객체를 파괴함
         }
+        DataManager.Instance.Plaaaa();
     }
     void Start()
     {
