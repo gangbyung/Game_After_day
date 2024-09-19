@@ -181,7 +181,7 @@ public class TalkManager : MonoBehaviour
             "장치가 있으면 뭐합니까! 대부분은 부식되고 고장나서 작동해봤자 제대로 막지도 못해요!:10",
             "아무튼 그나마 멀쩡한 장치라도 찾아내서 이 피해를 최소화 시키는 것이 저희의 목표입니다.:11"
         });
-        NameData.Add(10000, new string[] { "주인공&0", "기술자2&1", "주인공&2", "기술자2&3", "주인공&4", "기술자2&5", "기술자2&6", "기술자2&7", "기술자2&8", "주인공&9", "기술자2&10", "기술자1&11" });
+        NameData.Add(10000, new string[] { "주인공&0", "기술자2&1", "주인공&2", "기술자2&3", "주인공&4", "기술자2&5", "기술자2&6", "기술자2&7", "기술자2&8", "주인공&9", "기술자2&10", "기술자2&11" });
 
         //NPC 8 기술자3
         talkData.Add(11000, new string[] {
@@ -476,11 +476,11 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(8000 + 6, portraitArr[6]);
 
         //NPC 7 기술자 2
-        portraitData.Add(9000 + 0, portraitArr[7]);
+        portraitData.Add(9000 + 0, player_portraitArr[0]);
         portraitData.Add(9000 + 1, portraitArr[7]);
-        portraitData.Add(9000 + 2, portraitArr[7]);
+        portraitData.Add(9000 + 2, player_portraitArr[0]);
         portraitData.Add(9000 + 3, portraitArr[7]);
-        portraitData.Add(9000 + 4, portraitArr[7]);
+        portraitData.Add(9000 + 4, player_portraitArr[0]);
 
         //NPC 7 기술자 2
         portraitData.Add(10000 + 0, player_portraitArr[0]);
@@ -783,6 +783,10 @@ public class TalkManager : MonoBehaviour
             else if (id == 31000 && portraitIndex == 3)
             {
                 Changemap.Go_99_EndGame();
+            }
+            else if (id == 9000 && portraitIndex == 5)
+            {
+                NpcAction.Instance.Npc3Lock();
             }
             
             return portrait; // 값을 반환

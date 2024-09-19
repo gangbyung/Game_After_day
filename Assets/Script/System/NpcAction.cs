@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NpcAction : MonoBehaviour
@@ -38,6 +39,10 @@ public class NpcAction : MonoBehaviour
     public void NpcDumUnLock()
     {
         Npcs[3].SetActive(true);
+    }
+    public void Npc3Lock()
+    {
+        Npcs[3].gameObject.SetActive(false);
     }
 
     public void NpcUnLock13()

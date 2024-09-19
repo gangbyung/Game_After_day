@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
     ImageFader imgfade;
     Danger dan;
+    public SoundManager soundManager;
     void Awake()
     {
         
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
             anim = GetComponent<Animator>();
             imgfade = FindObjectOfType<ImageFader>();
             dan = FindObjectOfType<Danger>();
+            soundManager = FindObjectOfType<SoundManager>();
         }
         else
         {
@@ -195,18 +197,14 @@ public class Player : MonoBehaviour
     {
         Movement();
 
-
         //레이캐스트 눈에 보이게 하기
         if (rigid.velocity.y < 0)
         {
-            //Debug.DrawRay(rigid.position, Vector3.down * 2f, new Color(0, 1, 0));
             //레이 캐스트를 사용하여 무한점프 막기
             RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 2f, LayerMask.GetMask("platfrom"));
 
             if (rayHit.collider != null)
             {
-                //Debug.DrawRay(rigid.position, rayHit.point - rigid.position, Color.yellow);
-                //if (rayHit.distance < GetComponent<CapsuleCollider2D>().size.y + 0.5f)
                 if (rayHit.distance < 5f)
                 {
                     anim.SetBool("isJumping", false);
@@ -214,16 +212,7 @@ public class Player : MonoBehaviour
 
             }
         }
-        //Debug.DrawRay(rigid.position, dirVec * 1f, new Color(0,1,0));
-        //RaycastHit2D rayHitObject = Physics2D.Raycast(rigid.position, dirVec, 1f, LayerMask.GetMask("Object"));
-
-        //if (rayHitObject.collider != null)
-        //{
-        //    scanObject = rayHitObject.collider.gameObject;
-            
-        //}
-        ////else
-        //    //scanObject = null;
+        
     }
         
     void Movement() //가로 움직임
@@ -231,6 +220,8 @@ public class Player : MonoBehaviour
         float InputX = manager.isAction ? 0 : Input.GetAxis("Horizontal");
         if (InputX != 0f)
         {
+            soundManager.PlaySound(0);
+
             spriteRenderer.flipX = InputX < 0;//? true : false;
         }
 
@@ -242,14 +233,20 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift)) //달리기
             {
+                soundManager.StopSound(0);
+                soundManager.PlaySound(1);
+
                 currentSpeed = runSpeed;
                 if(InputX != 0)
                     DeRunStamina(Hud.Instance.runStamina * Time.deltaTime); //스태미나 감소
 
 
             }
+            else
+            {
+                soundManager.StopSound(1);
+            }
         }
-        
     }   
     
     

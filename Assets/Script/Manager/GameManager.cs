@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject TalkManager;
     public GameObject MainCamera;
     public GameObject GameObj;
+    public GameObject SoundMamager;
 
 
     public string[] scenesToDestroy;
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(Hud);
             DontDestroyOnLoad(TalkManager);
             DontDestroyOnLoad(MainCamera);
+            DontDestroyOnLoad(SoundMamager);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -207,6 +209,11 @@ public class GameManager : MonoBehaviour
                 Destroy(GameObj);
                 GameObj = null;
             }
+            if(SoundMamager != null)
+            {
+                Destroy(SoundMamager);
+                SoundMamager = null;
+            }
         }
     }
     private void OnDestroy()
@@ -223,6 +230,7 @@ public class GameManager : MonoBehaviour
         if (Hud != null) Hud.SetActive(true);
         if (TalkManager != null) TalkManager.SetActive(true);
         if (MainCamera != null) MainCamera.SetActive(true);
+        if (SoundMamager != null) SoundMamager.SetActive(true);
     }
     
 }
