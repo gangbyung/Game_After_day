@@ -50,7 +50,10 @@ public class Hud : MonoBehaviour
     public Button EscResumeButton; //esc를 누를때 나오는 퍼즈 버튼
     public Button SaveButton;
 
-    public bool isDead;
+    public bool isDead = false;
+    public bool isRadiDmg = false;
+
+    private Coroutine damageCoroutine;
 
     private static Hud _instance;
     public static Hud Instance
@@ -100,7 +103,7 @@ public class Hud : MonoBehaviour
 
         chmap = GetComponent<Changemap>();
         //시작 시 스태미나와 Hp를 최댓값으로 설정
-        currentStamina = maxStamina; 
+        currentStamina = maxStamina;
         currentHp = maxHp;
         //버튼 클릭
         PauseButton.onClick.AddListener(OnPauseButtonClicked);
@@ -109,13 +112,15 @@ public class Hud : MonoBehaviour
         SaveButton.onClick.AddListener(SaveClik);
         //인벤토리 끄기
         InventoryPanel.SetActive(activeInventory);
+
+        damageCoroutine = StartCoroutine(CheckRadiation());
     }
-    
-        void Update()
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && activeInventory == false) //게임 일시정지 호출
         {
-            if(GameEscape)
+            if (GameEscape)
             {
                 ResumeGame();
             }
@@ -132,7 +137,7 @@ public class Hud : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(activeInventory)
+            if (activeInventory)
             {
                 activeInventory = false;
                 InventoryPanel.SetActive(activeInventory);
@@ -144,6 +149,16 @@ public class Hud : MonoBehaviour
         Radiation_exposurePer.text = RadiationController.Instance.currentRadiationExposure.ToString("F0") + "%";
 
         GameOver();
+
+        
+    }
+    void OnDestroy()
+    {
+        // 오브젝트가 파괴될 때 코루틴 종료
+        if (damageCoroutine != null)
+        {
+            StopCoroutine(damageCoroutine);
+        }
     }
     public void UpdateUI() //ui업데이트 함수
     {
@@ -206,7 +221,7 @@ public class Hud : MonoBehaviour
         {
             slots[i].RemoveSlot();
         }
-        for(int i = 0;i < inven.items.Count; i++)
+        for (int i = 0; i < inven.items.Count; i++)
         {
             slots[i].item = inven.items[i];
             slots[i].UpdateSlotUI();
@@ -215,24 +230,39 @@ public class Hud : MonoBehaviour
 
     void GameOver()
     {
-        if(currentHp < 1f && !isDead)
+        if (currentHp < 1f && !isDead)
         {
-            Changemap.Go_99_EndGame();
+            Changemap.Go_80_DeadGame();
             isDead = true;
         }
-        
+
     }
     public void SaveClik()
     {
         DataManager.Instance.GameSave();
     }
-    IEnumerator RadationDamage()
+
+    IEnumerator CheckRadiation()
     {
-        if(RadiationController.Instance.currentRadiationExposure > 90)
+        while (true)
         {
-            currentHp -= 10;
-            yield return new WaitForSeconds(1);
+            // 1초 대기
+            yield return new WaitForSeconds(1f);
+
+            // 방사능 수치가 90 이상일 때 HP 감소
+            if (RadiationController.Instance.currentRadiationExposure >= 90f)
+            {
+                currentHp -= 10f;
+                Debug.Log("HP 감소: " + currentHp);
+
+                // HP가 0 이하이면 사망 처리
+                if (currentHp <= 1f)
+                {
+                    Debug.Log("플레이어 사망");
+                    // 사망 처리 로직을 여기에 추가
+                    yield break;  // 코루틴 종료
+                }
+            }
         }
-        yield return null;
     }
 }

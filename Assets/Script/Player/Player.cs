@@ -40,10 +40,7 @@ public class Player : MonoBehaviour
     ImageFader imgfade;
     Danger dan;
     public SoundManager soundManager;
-    void Awake()
-    {
-        
-    }
+    
     void Start()
     {
         if(Instance == null)
@@ -142,14 +139,7 @@ public class Player : MonoBehaviour
         }
 
         //Direction
-        bool hDown = Input.GetButtonDown("Horizontal");
-        bool hUp = Input.GetButtonUp("Horizontal");
-        float h = Input.GetAxisRaw("Horizontal");
-
-        if (hDown && h == -1)
-            dirVec = Vector3.left;
-        else if (hDown && h == 1)
-            dirVec = Vector3.right;
+        
 
         Next();
     }
@@ -213,6 +203,14 @@ public class Player : MonoBehaviour
         
     void Movement() //가로 움직임
     {
+        bool hDown = Input.GetButtonDown("Horizontal");
+        float h = Input.GetAxisRaw("Horizontal");
+
+        if (hDown && h == -1)
+            dirVec = Vector3.left;
+        else if (hDown && h == 1)
+            dirVec = Vector3.right;
+
         float InputX = manager.isAction ? 0 : Input.GetAxis("Horizontal");
         if (InputX != 0f)
         {

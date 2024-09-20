@@ -10,7 +10,7 @@ public class ItemHealingEft : ItemEffect
     public override bool ExecuteRole()
     {
         Debug.Log("playerHp add : " + healingPoint);
-        Hud.Instance.currentHp += 20;
+        RadiationController.Instance.currentRadiationExposure -= 30;
         return true;
     }
 }

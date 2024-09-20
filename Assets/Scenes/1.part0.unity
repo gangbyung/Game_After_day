@@ -2700,6 +2700,7 @@ MonoBehaviour:
   scenesToDestroy:
   - 3.Endpart0
   - 99.EndGame
+  - 80.DeadGame
 --- !u!4 &728815042
 Transform:
   m_ObjectHideFlags: 0
@@ -13401,6 +13402,7 @@ MonoBehaviour:
   EscResumeButton: {fileID: 575705866637817989}
   SaveButton: {fileID: 88509462}
   isDead: 0
+  isRadiDmg: 0
 --- !u!1 &4737765179487498108
 GameObject:
   m_ObjectHideFlags: 0

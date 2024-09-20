@@ -78,6 +78,10 @@ public class Changemap : MonoBehaviour
         DataManager.Instance.map = 6;
 
     }
+    public static void Go_80_DeadGame()
+    {
+        LoadingSceneManager.LoadScene("80.DeadGame");
+    }
     public static void Go_99_EndGame() => LoadingSceneManager.LoadScene("99.EndGame");
     public void GameQuit() => Application.Quit();
 }
