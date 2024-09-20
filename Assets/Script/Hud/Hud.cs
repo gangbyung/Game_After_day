@@ -226,5 +226,13 @@ public class Hud : MonoBehaviour
     {
         DataManager.Instance.GameSave();
     }
-    
+    IEnumerator RadationDamage()
+    {
+        if(RadiationController.Instance.currentRadiationExposure > 90)
+        {
+            currentHp -= 10;
+            yield return new WaitForSeconds(1);
+        }
+        yield return null;
+    }
 }

@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
                 rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
                 anim.SetBool("isJumping", true);
+                soundManager.PlaySound(3);
                 anim.SetBool("iswalking", false);
 
                 
@@ -150,11 +151,6 @@ public class Player : MonoBehaviour
         else if (hDown && h == 1)
             dirVec = Vector3.right;
 
-        //대사출력
-        //if(Input.GetKeyDown(KeyCode.F) && scanObject != null)
-        //{
-        //    manager.Action(scanObject);
-        //}
         Next();
     }
     public void Next()
@@ -272,13 +268,5 @@ public class Player : MonoBehaviour
 
         Hud.Instance.currentStamina = Mathf.Clamp(Hud.Instance.currentStamina + amount, 0f, Hud.Instance.maxStamina);
         Hud.Instance.UpdateUI();
-    }
-
-
-    //private IEnumerator StaminaLatecortine(float amount)
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //}
-    
-    
+    }    
 }

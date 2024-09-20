@@ -34,6 +34,7 @@ public class TalkManager : MonoBehaviour
     Changemap Chmap;
     ImageFader imageFader;
     PrefabSpawner prefabSpawner;
+    public SoundManager soundManager;
     void Awake()
     {
         if (Instance == null)
@@ -55,6 +56,7 @@ public class TalkManager : MonoBehaviour
         imageFader = FindObjectOfType<ImageFader>();
         Chmap = GetComponent<Changemap>();
         prefabSpawner = GetComponent<PrefabSpawner>();
+        soundManager = FindObjectOfType<SoundManager>();
         //NpcAction a = FindObjectOfType<NpcAction>();
 
     }
@@ -162,9 +164,10 @@ public class TalkManager : MonoBehaviour
             "예? 아, 예. 맞을겁니다. 무슨일이죠?:1",
             "저기 계시는 분이 이걸 좀 전달해 드리라 하셔서요:2",
             "아하... 그건 책상 오른쪽 끝에 놔주시면 됩니다.:3",
-            "(종이더미를 테이블 위에 둠):4"
+            "(종이더미를 테이블 위에 둠):4",
+            ":5"
         });
-        NameData.Add(9000, new string[] { "주인공&0", "기술자2&1", "주인공&2", "기술자2&3", "주인공&4" });
+        NameData.Add(9000, new string[] { "주인공&0", "기술자2&1", "주인공&2", "기술자2&3", "주인공&4","&5" });
 
         // NPC 7 기술자2
         talkData.Add(10000, new string[] {
@@ -481,6 +484,7 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(9000 + 2, player_portraitArr[0]);
         portraitData.Add(9000 + 3, portraitArr[7]);
         portraitData.Add(9000 + 4, player_portraitArr[0]);
+        portraitData.Add(9000 + 5, portraitArr[0]);
 
         //NPC 7 기술자 2
         portraitData.Add(10000 + 0, player_portraitArr[0]);
@@ -772,9 +776,8 @@ public class TalkManager : MonoBehaviour
             }
             else if(id == 15000 && portraitIndex == 6)
             {
-                
+                soundManager.PlaySound(4);
                 MiniGamePanel.SetActive(true);
-                Debug.Log("tlqkf");
             }
             else if (id == 24000 && portraitIndex == 2)
             {
@@ -786,9 +789,12 @@ public class TalkManager : MonoBehaviour
             }
             else if (id == 9000 && portraitIndex == 5)
             {
-                NpcAction.Instance.Npc3Lock();
+                NpcAction.Instance.Npc9000();
             }
-            
+            else if(id ==24000 && portraitIndex == 0)
+            {
+                soundManager.PlaySound(6);
+            }
             return portrait; // 값을 반환
         }
         else

@@ -96,7 +96,7 @@ public class RadiationController : MonoBehaviour
         while (true)
         {
             // 방사선 노출량 증가
-            currentRadiationExposure = Mathf.Clamp(currentRadiationExposure + 1, 0f, maxRadiationExposure);
+            currentRadiationExposure = Mathf.Clamp(currentRadiationExposure + 10, 0f, maxRadiationExposure);
             Hud.Instance.UpdateUI();
 
             // 1초 대기

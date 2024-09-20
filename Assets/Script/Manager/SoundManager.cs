@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("사운드 인덱스가 범위를 벗어났습니다.");
+            Debug.LogWarning("사운드 인덱스 벗어남.");
         }
     }
 
@@ -61,7 +61,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("사운드 인덱스가 범위를 벗어났습니다.");
+            Debug.LogWarning("사운드 인덱스 벗어남.");
         }
     }
 }

@@ -17,7 +17,7 @@ public class LoadingUIManager : MonoBehaviour
 
     private void Start()
     {
-        // Null 검사를 추가하여 오류 확인
+        // Null 검사
         if (mapNameText == null)
             Debug.LogError("mapNameText가 할당되지 않았습니다. 인스펙터에서 설정해 주세요.");
 

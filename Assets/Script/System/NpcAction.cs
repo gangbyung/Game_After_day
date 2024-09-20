@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NpcAction : MonoBehaviour
 {
@@ -40,10 +41,7 @@ public class NpcAction : MonoBehaviour
     {
         Npcs[3].SetActive(true);
     }
-    public void Npc3Lock()
-    {
-        Npcs[3].gameObject.SetActive(false);
-    }
+    
 
     public void NpcUnLock13()
     {
@@ -65,6 +63,10 @@ public class NpcAction : MonoBehaviour
     {
         StartCoroutine(NpcUnLock16cor());
     }
+    public void Npc9000()
+    {
+        StartCoroutine(Npcid9000cor());
+    }
     IEnumerator NpcUnLock5_1cor()
     {
         Npcs[1].SetActive(true);
@@ -82,6 +84,14 @@ public class NpcAction : MonoBehaviour
         Npcs[1].SetActive(false);
         yield return new WaitForSeconds(.1f);
         Npcs[1].SetActive(true);
+        yield return null;
+    }
+    IEnumerator Npcid9000cor()
+    {
+        Npcs[3].SetActive(false);
+        GameManager.Instance.TalkBugpix();
+        yield return new WaitForSeconds(.1f);
+        Npcs[4].SetActive(true);
         yield return null;
     }
 }
